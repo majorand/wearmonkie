@@ -1,0 +1,172 @@
+<div class="container">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="{{ routes.root_url }}">{{ 'general.breadcrumbs.home' | t | default: 'Home' }}</a> /
+    <span aria-current="page">{{ 'sections.cart.title' | t | default: 'Your Cart' }}</span>
+  </nav>
+</div>
+
+<section class="cart-page container">
+  <h1 class="cart-page__title">
+    {{ 'sections.cart.title' | t | default: 'Your Cart' }}
+    <span class="cart-count">({{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }})</span>
+  </h1>
+
+  {%- if cart.item_count > 0 -%}
+    {%- form 'cart', cart, id: 'cart-form' -%}
+      <div class="cart-layout">
+
+        <!-- CART ITEMS -->
+        <div class="cart-items">
+          {%- for item in cart.items -%}
+            <div class="cart-item" data-line="{{ forloop.index }}">
+              <a href="{{ item.url }}" class="cart-item__img-link">
+                {%- if item.image -%}
+                  {{
+                    item.image
+                    | image_url: width: 200
+                    | image_tag:
+                      loading: 'lazy',
+                      alt: item.image.alt | default: item.product.title,
+                      class: 'cart-item__img',
+                      widths: '100, 160, 200'
+                  }}
+                {%- else -%}
+                  {{ 'product-1' | placeholder_svg_tag: 'cart-item__img' }}
+                {%- endif -%}
+              </a>
+
+              <div class="cart-item__info">
+                <div class="cart-item__header">
+                  <div>
+                    <p class="cart-item__brand">{{ item.vendor }}</p>
+                    <h3 class="cart-item__name">
+                      <a href="{{ item.url }}">{{ item.product.title }}</a>
+                    </h3>
+                    {%- unless item.product.has_only_default_variant -%}
+                      <p class="cart-item__variant">
+                        {%- for option in item.options_with_values -%}
+                          {{ option.name }}: {{ option.value }}
+                          {%- unless forloop.last %} &nbsp;|&nbsp; {%- endunless -%}
+                        {%- endfor -%}
+                      </p>
+                    {%- endunless -%}
+                    {%- if item.selling_plan_allocation -%}
+                      <p class="cart-item__variant">{{ item.selling_plan_allocation.selling_plan.name }}</p>
+                    {%- endif -%}
+                  </div>
+                  <button
+                    type="button"
+                    class="cart-item__remove"
+                    aria-label="{{ 'sections.cart.remove_title' | t: title: item.title | default: 'Remove' }}"
+                    data-line="{{ forloop.index }}"
+                    onclick="removeCartItem({{ forloop.index }})"
+                  >
+                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                  </button>
+                </div>
+
+                <div class="cart-item__footer">
+                  <div class="qty-selector">
+                    <button type="button" class="qty-btn"
+                      aria-label="{{ 'sections.cart.quantities.decrease' | t: quantity: item.quantity | default: 'Decrease' }}"
+                      onclick="updateCartQty({{ forloop.index }}, {{ item.quantity | minus: 1 }})">−</button>
+                    <span class="qty-value">{{ item.quantity }}</span>
+                    <button type="button" class="qty-btn"
+                      aria-label="{{ 'sections.cart.quantities.increase' | t: quantity: item.quantity | default: 'Increase' }}"
+                      onclick="updateCartQty({{ forloop.index }}, {{ item.quantity | plus: 1 }})">+</button>
+                  </div>
+                  <span class="cart-item__price">{{ item.final_line_price | money }}</span>
+                </div>
+              </div>
+            </div>
+          {%- endfor -%}
+
+          <a href="{{ routes.all_products_collection_url }}" class="link-arrow" style="display:inline-block;margin-top:1.5rem;">
+            ← {{ 'general.continue_shopping' | t | default: 'Continue Shopping' }}
+          </a>
+        </div>
+
+        <!-- ORDER SUMMARY -->
+        <div class="cart-summary">
+          <h2 class="cart-summary__title">{{ 'sections.cart.order_summary' | t | default: 'Order Summary' }}</h2>
+
+          <div class="cart-summary__row">
+            <span>{{ 'sections.cart.subtotal' | t | default: 'Subtotal' }}</span>
+            <span>{{ cart.total_price | money }}</span>
+          </div>
+
+          {%- if cart.total_discount > 0 -%}
+            <div class="cart-summary__row text-green">
+              <span>{{ 'sections.cart.discounts' | t | default: 'Savings' }}</span>
+              <span>−{{ cart.total_discount | money }}</span>
+            </div>
+          {%- endif -%}
+
+          <div class="cart-summary__row">
+            <span>{{ 'sections.cart.shipping' | t | default: 'Shipping' }}</span>
+            <span class="text-green">{{ 'sections.cart.calculated_at_checkout' | t | default: 'Calculated at checkout' }}</span>
+          </div>
+
+          {%- if section.settings.show_tax_note -%}
+            <div class="cart-summary__row">
+              <span>{{ 'sections.cart.taxes' | t | default: 'Tax' }}</span>
+              <span>{{ 'sections.cart.calculated_at_checkout' | t | default: 'Calculated at checkout' }}</span>
+            </div>
+          {%- endif -%}
+
+          <!-- DISCOUNT CODE -->
+          {%- if section.settings.show_cart_note -%}
+            <div class="promo-code">
+              <input type="text" name="discount" id="discount" class="promo-input"
+                placeholder="{{ 'sections.cart.discounts.discount_code' | t | default: 'Promo code' }}">
+              <button type="submit" class="btn btn--ghost btn--sm" style="color:#1a1a1a;border-color:#e8e4df;">
+                {{ 'sections.cart.discounts.apply_discount_code' | t | default: 'Apply' }}
+              </button>
+            </div>
+          {%- endif -%}
+
+          <div class="cart-summary__divider"></div>
+          <div class="cart-summary__row cart-summary__row--total">
+            <span>{{ 'sections.cart.estimated_total' | t | default: 'Total' }}</span>
+            <span>{{ cart.total_price | money }}</span>
+          </div>
+
+          <button type="submit" name="checkout" class="btn btn--primary btn--lg" style="width:100%;margin-top:1.5rem;" form="cart-form">
+            {{ 'sections.cart.checkout' | t | default: 'Proceed to Checkout' }}
+          </button>
+
+          <div class="cart-payment-icons">
+            {%- for type in shop.enabled_payment_types -%}
+              {{ type | payment_type_svg_tag: class: 'payment-icon' }}
+            {%- endfor -%}
+          </div>
+
+          <p class="cart-summary__note">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            {{ 'sections.cart.secure' | t | default: 'Secure SSL checkout — your data is safe.' }}
+          </p>
+        </div>
+
+      </div>
+    {%- endform -%}
+
+  {%- else -%}
+    <div class="cart-empty" style="text-align:center;padding:5rem 0;">
+      <svg width="64" height="64" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24" style="margin:0 auto 1.5rem;opacity:.3;" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <h2 style="font-family:var(--font-serif-family,'Georgia');font-size:1.75rem;margin-bottom:.75rem;">{{ 'sections.cart.empty' | t | default: 'Your cart is empty' }}</h2>
+      <p style="color:#6b6b6b;margin-bottom:2rem;">{{ 'sections.cart.empty_subtext' | t | default: 'Looks like you have not added anything to your cart.' }}</p>
+      <a href="{{ routes.all_products_collection_url }}" class="btn btn--primary">{{ 'general.continue_shopping' | t | default: 'Continue Shopping' }}</a>
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Cart",
+  "settings": [
+    { "type": "checkbox", "id": "show_cart_note", "label": "Show discount code field", "default": true },
+    { "type": "checkbox", "id": "show_tax_note", "label": "Show tax note", "default": false },
+    { "type": "checkbox", "id": "show_recommendations", "label": "Show product recommendations", "default": true }
+  ]
+}
+{% endschema %}

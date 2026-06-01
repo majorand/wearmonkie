@@ -1,0 +1,47 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "WearMonkie",
+    "theme_version": "1.0.0",
+    "theme_author": "WearMonkie",
+    "theme_documentation_url": "https://wearmonkie.com",
+    "theme_support_url": "https://wearmonkie.com/pages/contact"
+  },
+  {
+    "name": "Branding",
+    "settings": [
+      { "type": "image_picker", "id": "logo", "label": "Logo" },
+      { "type": "image_picker", "id": "footer_logo", "label": "Footer logo" },
+      { "type": "image_picker", "id": "favicon", "label": "Favicon" },
+      { "type": "text", "id": "footer_tagline", "label": "Footer tagline", "default": "Effortless style for every woman." }
+    ]
+  },
+  {
+    "name": "Announcement Bar",
+    "settings": [
+      { "type": "checkbox", "id": "announcement_bar_enabled", "label": "Enable announcement bar", "default": true },
+      { "type": "text", "id": "announcement_text", "label": "Announcement text", "default": "Free shipping on orders over $75 &nbsp;·&nbsp; Use code <strong>WELCOME15</strong> for 15% off your first order" }
+    ]
+  },
+  {
+    "name": "Navigation",
+    "settings": [
+      { "type": "link_list", "id": "menu", "label": "Main menu", "default": "main-menu" },
+      { "type": "link_list", "id": "footer-menu-1", "label": "Footer menu 1 (Shop)", "default": "footer-shop" },
+      { "type": "link_list", "id": "footer-menu-2", "label": "Footer menu 2 (Help)", "default": "footer-help" },
+      { "type": "link_list", "id": "footer-menu-3", "label": "Footer menu 3 (Company)", "default": "footer-company" },
+      { "type": "text", "id": "footer_menu_1_heading", "label": "Footer menu 1 heading", "default": "Shop" },
+      { "type": "text", "id": "footer_menu_2_heading", "label": "Footer menu 2 heading", "default": "Help" },
+      { "type": "text", "id": "footer_menu_3_heading", "label": "Footer menu 3 heading", "default": "Company" },
+      { "type": "checkbox", "id": "show_search", "label": "Show search icon", "default": true }
+    ]
+  },
+  {
+    "name": "Social Media",
+    "settings": [
+      { "type": "text", "id": "social_instagram_link", "label": "Instagram URL" },
+      { "type": "text", "id": "social_tiktok_link", "label": "TikTok URL" },
+      { "type": "text", "id": "social_pinterest_link", "label": "Pinterest URL" }
+    ]
+  }
+]

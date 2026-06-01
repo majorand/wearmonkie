@@ -1,0 +1,46 @@
+<header class="header" role="banner">
+  <nav class="nav container" aria-label="Main navigation">
+
+    <div class="nav__left">
+      {%- for link in linklists[settings.menu].links -%}
+        <a href="{{ link.url }}"
+           class="nav__link{% if link.active %} nav__link--active{% endif %}"
+        >{{ link.title }}</a>
+      {%- endfor -%}
+    </div>
+
+    <a href="{{ routes.root_url }}" class="nav__logo" aria-label="{{ shop.name }} home">
+      {%- if settings.logo != blank -%}
+        {{- settings.logo | image_url: width: 200 | image_tag: loading: 'eager', alt: shop.name -}}
+      {%- else -%}
+        {{ shop.name }}
+      {%- endif -%}
+    </a>
+
+    <div class="nav__right">
+
+      {%- if settings.show_search -%}
+        <a href="{{ routes.search_url }}" class="nav__icon" aria-label="{{ 'general.search.search' | t }}">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </a>
+      {%- endif -%}
+
+      {%- if shop.customer_accounts_enabled -%}
+        <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
+           class="nav__icon"
+           aria-label="{{ 'customer.account.title' | t }}"
+        >
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </a>
+      {%- endif -%}
+
+      <a href="{{ routes.cart_url }}" class="nav__icon nav__cart" aria-label="{{ 'sections.cart_icon_bubble.title' | t }}" id="cart-icon-bubble">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        {%- if cart.item_count > 0 -%}
+          <span class="cart-badge" aria-hidden="true">{{ cart.item_count }}</span>
+        {%- endif -%}
+      </a>
+
+    </div>
+  </nav>
+</header>
