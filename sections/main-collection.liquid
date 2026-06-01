@@ -90,6 +90,7 @@
       {%- endif -%}
     </div>
 
+    {%- paginate collection.products by section.settings.products_per_page -%}
     <div class="products__grid products__grid--3col">
       {%- for product in collection.products -%}
         {%- render 'product-card', product: product -%}
@@ -117,6 +118,7 @@
         {%- endif -%}
       </nav>
     {%- endif -%}
+    {%- endpaginate -%}
   </div>
 </div>
 

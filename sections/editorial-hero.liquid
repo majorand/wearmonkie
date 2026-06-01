@@ -1,6 +1,7 @@
 {%- liquid
   assign overlay = section.settings.overlay_opacity | divided_by: 100.0
   assign align = section.settings.text_align
+  assign hero_alt = section.settings.image.alt | default: section.settings.heading | strip_html
 -%}
 
 <section
@@ -17,7 +18,7 @@
           loading: 'eager',
           fetchpriority: 'high',
           class: 'ed-hero__img',
-          alt: section.settings.image.alt | default: section.settings.heading | strip_html,
+          alt: hero_alt,
           widths: '750, 1100, 1500, 1780, 2000, 2400',
           sizes: '100vw'
       }}

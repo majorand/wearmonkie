@@ -11,6 +11,16 @@
   assign compare_price = product.compare_at_price
   assign featured_image = product.featured_image
   assign available = product.available
+
+  # "New" badge: created within the last 7 days (604800 seconds).
+  # Compute epoch seconds as integers so the comparison is valid Liquid.
+  assign now_ts = 'now' | date: '%s' | plus: 0
+  assign week_ago_ts = now_ts | minus: 604800
+  assign created_ts = product.created_at | date: '%s' | plus: 0
+  assign is_new = false
+  if created_ts > week_ago_ts
+    assign is_new = true
+  endif
 -%}
 
 <div class="product-card">
@@ -37,7 +47,7 @@
         <span class="badge badge--sale">
           {{ product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round }}% off
         </span>
-      {%- elsif product.created_at > now | date: '%s' | minus: 604800 -%}
+      {%- elsif is_new -%}
         <span class="badge badge--new">New</span>
       {%- endif -%}
 

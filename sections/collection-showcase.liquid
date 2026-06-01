@@ -1,7 +1,3 @@
-{%- liquid
-  assign block = section.blocks.first
--%}
-
 <section class="showcase section container {% if section.settings.reverse %}showcase--reverse{% endif %}">
   {%- assign collection = collections[section.settings.collection] -%}
   <div class="showcase__media">
