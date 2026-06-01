@@ -1,0 +1,132 @@
+<div class="page-header">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="{{ routes.root_url }}">{{ 'general.breadcrumbs.home' | t | default: 'Home' }}</a> /
+      <span aria-current="page">{{ collection.title }}</span>
+    </nav>
+    <h1 class="page-header__title">{{ collection.title }}</h1>
+    {%- if collection.description != blank -%}
+      <p class="page-header__sub">{{ collection.description }}</p>
+    {%- else -%}
+      <p class="page-header__sub">{{ collection.products_count }} products</p>
+    {%- endif -%}
+  </div>
+</div>
+
+<div class="shop-layout container">
+
+  {%- if section.settings.enable_filtering -%}
+    <aside class="filters" aria-label="Filters">
+      <h3 class="filters__title">{{ 'sections.collection_template.filter_and_sort' | t | default: 'Filter' }}</h3>
+
+      {%- for filter in collection.filters -%}
+        <div class="filter-group">
+          <button class="filter-group__toggle" aria-expanded="true" aria-controls="filter-{{ filter.param_name }}">
+            {{ filter.label }}
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="filter-group__options" id="filter-{{ filter.param_name }}">
+            {%- case filter.type -%}
+              {%- when 'list' -%}
+                {%- for value in filter.values -%}
+                  <label class="filter-option">
+                    <input
+                      type="checkbox"
+                      name="{{ value.param_name }}"
+                      value="{{ value.value }}"
+                      {% if value.active %}checked{% endif %}
+                      {% if value.count == 0 and value.active == false %}disabled{% endif %}
+                    >
+                    {{ value.label }}
+                    <span class="filter-count">({{ value.count }})</span>
+                  </label>
+                {%- endfor -%}
+              {%- when 'price_range' -%}
+                <div class="price-range">
+                  <label>
+                    {{ 'sections.collection_template.from' | t | default: 'From' }}
+                    <input type="number" name="{{ filter.min_value.param_name }}"
+                      value="{{ filter.min_value.value | divided_by: 100.0 }}"
+                      min="0" max="{{ filter.range_max | divided_by: 100.0 }}"
+                      class="price-range__input" placeholder="$0">
+                  </label>
+                  <label>
+                    {{ 'sections.collection_template.to' | t | default: 'To' }}
+                    <input type="number" name="{{ filter.max_value.param_name }}"
+                      value="{{ filter.max_value.value | divided_by: 100.0 }}"
+                      min="0" max="{{ filter.range_max | divided_by: 100.0 }}"
+                      class="price-range__input" placeholder="{{ filter.range_max | divided_by: 100.0 | money_without_currency }}">
+                  </label>
+                </div>
+            {%- endcase -%}
+          </div>
+        </div>
+      {%- endfor -%}
+
+      {%- if collection.filters.size > 0 -%}
+        <a href="{{ collection.url }}" class="btn btn--ghost btn--sm" style="width:100%;margin-top:1rem;color:#1a1a1a;border-color:#e8e4df;">
+          {{ 'sections.collection_template.clear_all' | t | default: 'Clear All Filters' }}
+        </a>
+      {%- endif -%}
+    </aside>
+  {%- endif -%}
+
+  <div class="shop-content">
+    <div class="shop-topbar">
+      <p class="shop-count">
+        {{ 'sections.collection_template.product_count_simple' | t: count: collection.products_count | default: collection.products_count | append: ' products' }}
+      </p>
+      {%- if section.settings.enable_sorting -%}
+        <div class="shop-sort">
+          <label for="sort-by">{{ 'sections.collection_template.sort_by_label' | t | default: 'Sort by:' }}</label>
+          <select name="sort_by" id="sort-by" class="sort-select" onchange="window.location = window.location.pathname + '?sort_by=' + this.value">
+            {%- for option in collection.sort_options -%}
+              <option value="{{ option.value }}" {% if option.value == collection.sort_by %}selected{% endif %}>
+                {{ option.name }}
+              </option>
+            {%- endfor -%}
+          </select>
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="products__grid products__grid--3col">
+      {%- for product in collection.products -%}
+        {%- render 'product-card', product: product -%}
+      {%- else -%}
+        <p class="no-results">{{ 'sections.collection_template.empty' | t | default: 'No products found.' }}</p>
+      {%- endfor -%}
+    </div>
+
+    {%- if paginate.pages > 1 -%}
+      <nav class="pagination" aria-label="Pagination">
+        {%- if paginate.previous -%}
+          <a href="{{ paginate.previous.url }}" class="pagination__btn">← {{ 'general.pagination.previous' | t | default: 'Prev' }}</a>
+        {%- endif -%}
+        {%- for part in paginate.parts -%}
+          {%- if part.is_link -%}
+            <a href="{{ part.url }}" class="pagination__btn">{{ part.title }}</a>
+          {%- elsif part.title == paginate.current_page -%}
+            <span class="pagination__btn pagination__btn--active" aria-current="page">{{ part.title }}</span>
+          {%- else -%}
+            <span class="pagination__ellipsis">{{ part.title }}</span>
+          {%- endif -%}
+        {%- endfor -%}
+        {%- if paginate.next -%}
+          <a href="{{ paginate.next.url }}" class="pagination__btn pagination__next">{{ 'general.pagination.next' | t | default: 'Next' }} →</a>
+        {%- endif -%}
+      </nav>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection",
+  "settings": [
+    { "type": "range", "id": "products_per_page", "min": 8, "max": 48, "step": 4, "label": "Products per page", "default": 12 },
+    { "type": "checkbox", "id": "enable_filtering", "label": "Enable filtering", "default": true },
+    { "type": "checkbox", "id": "enable_sorting", "label": "Enable sorting", "default": true }
+  ]
+}
+{% endschema %}

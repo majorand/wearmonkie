@@ -1,0 +1,51 @@
+<section class="trust section container">
+  <div class="trust__grid">
+    {%- for block in section.blocks -%}
+      <div class="trust__item" {{ block.shopify_attributes }}>
+        {%- case block.settings.icon -%}
+          {%- when 'shipping' -%}
+            <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          {%- when 'returns' -%}
+            <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+          {%- when 'secure' -%}
+            <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          {%- when 'support' -%}
+            <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        {%- endcase -%}
+        <h4>{{ block.settings.heading }}</h4>
+        <p>{{ block.settings.text }}</p>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Trust Badges",
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Badge",
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Icon", "options": [
+          { "value": "shipping", "label": "Shipping" },
+          { "value": "returns", "label": "Returns" },
+          { "value": "secure", "label": "Secure" },
+          { "value": "support", "label": "Support" }
+        ], "default": "shipping" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Free Shipping" },
+        { "type": "text", "id": "text", "label": "Text", "default": "On all orders over $75" }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Trust Badges",
+    "blocks": [
+      { "type": "badge", "settings": { "icon": "shipping", "heading": "Free Shipping", "text": "On all orders over $75" } },
+      { "type": "badge", "settings": { "icon": "returns", "heading": "Easy Returns", "text": "30-day hassle-free returns" } },
+      { "type": "badge", "settings": { "icon": "secure", "heading": "Secure Checkout", "text": "SSL encrypted payments" } },
+      { "type": "badge", "settings": { "icon": "support", "heading": "Style Support", "text": "Personal styling advice" } }
+    ]
+  }]
+}
+{% endschema %}

@@ -1,0 +1,87 @@
+{%- liquid
+  assign speed = section.settings.speed | default: 28
+-%}
+
+<section
+  class="marquee {% if section.settings.invert %}marquee--invert{% endif %}"
+  style="--marquee-speed: {{ speed }}s;"
+  aria-label="{{ section.settings.aria_label | default: 'Highlights' | escape }}"
+>
+  <div class="marquee__track" aria-hidden="false">
+    {%- for n in (1..2) -%}
+      <ul class="marquee__group" {% if n == 2 %}aria-hidden="true"{% endif %}>
+        {%- for block in section.blocks -%}
+          <li class="marquee__item" {{ block.shopify_attributes }}>
+            {%- if block.settings.url != blank -%}
+              <a href="{{ block.settings.url }}" class="marquee__link">{{ block.settings.text | escape }}</a>
+            {%- else -%}
+              <span>{{ block.settings.text | escape }}</span>
+            {%- endif -%}
+            <span class="marquee__star" aria-hidden="true">{{ section.settings.separator | default: '✦' }}</span>
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% stylesheet %}
+.marquee {
+  background: var(--color-dark);
+  color: #fff;
+  overflow: hidden;
+  padding: 1.15rem 0;
+  border-block: 1px solid rgba(255,255,255,.08);
+}
+.marquee--invert { background: var(--color-bg); color: var(--color-dark); border-color: var(--color-border); }
+.marquee__track { display: flex; width: max-content; animation: marqueeScroll var(--marquee-speed, 28s) linear infinite; }
+.marquee:hover .marquee__track { animation-play-state: paused; }
+.marquee__group { display: flex; align-items: center; }
+.marquee__item {
+  display: inline-flex; align-items: center; gap: 2.5rem;
+  padding-right: 2.5rem;
+  font-family: var(--font-serif);
+  font-size: clamp(1.1rem, 2.4vw, 1.9rem);
+  font-weight: 600; letter-spacing: .01em; white-space: nowrap;
+}
+.marquee__link { transition: opacity var(--transition); }
+.marquee__link:hover { opacity: .65; }
+.marquee__star { font-size: .7em; opacity: .5; }
+@keyframes marqueeScroll { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  .marquee__track { animation: none; }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Marquee",
+  "tag": "section",
+  "settings": [
+    { "type": "range", "id": "speed", "min": 12, "max": 60, "step": 2, "unit": "s", "label": "Scroll duration", "default": 28 },
+    { "type": "text", "id": "separator", "label": "Separator glyph", "default": "✦" },
+    { "type": "checkbox", "id": "invert", "label": "Light background", "default": false },
+    { "type": "text", "id": "aria_label", "label": "Accessible label", "default": "Store highlights" }
+  ],
+  "blocks": [
+    {
+      "type": "phrase",
+      "name": "Phrase",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text", "default": "Free Shipping Over $75" },
+        { "type": "url", "id": "url", "label": "Optional link" }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Marquee",
+    "blocks": [
+      { "type": "phrase", "settings": { "text": "Free Shipping Over $75" } },
+      { "type": "phrase", "settings": { "text": "Inclusive Sizing XS–3X" } },
+      { "type": "phrase", "settings": { "text": "Sustainably Made" } },
+      { "type": "phrase", "settings": { "text": "30-Day Easy Returns" } },
+      { "type": "phrase", "settings": { "text": "New Drops Every Friday" } }
+    ]
+  }]
+}
+{% endschema %}
