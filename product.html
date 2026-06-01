@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Linen Midi Wrap Dress — WearMonkie</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div class="announcement-bar">
+    Free shipping on orders over $75 &nbsp;·&nbsp; Use code <strong>WELCOME15</strong> for 15% off your first order
+  </div>
+
+  <header class="header">
+    <nav class="nav container">
+      <div class="nav__left">
+        <a href="#" class="nav__link">New Arrivals</a>
+        <a href="collections.html" class="nav__link">Collections</a>
+        <a href="#" class="nav__link">Sale</a>
+      </div>
+      <a href="index.html" class="nav__logo">WearMonkie</a>
+      <div class="nav__right">
+        <a href="#" class="nav__icon" aria-label="Search">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </a>
+        <a href="#" class="nav__icon" aria-label="Account">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </a>
+        <a href="cart.html" class="nav__icon nav__cart" aria-label="Cart">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="cart-badge">2</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <nav class="breadcrumb">
+        <a href="index.html">Home</a> / <a href="collections.html">Collections</a> / <span>Linen Midi Wrap Dress</span>
+      </nav>
+    </div>
+
+    <!-- PRODUCT DETAIL -->
+    <section class="product-detail container">
+
+      <!-- GALLERY -->
+      <div class="product-gallery">
+        <div class="product-gallery__thumbs">
+          <button class="thumb active" onclick="setMainImg(this, 'https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=800&q=80')">
+            <img src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=120&q=80" alt="View 1" />
+          </button>
+          <button class="thumb" onclick="setMainImg(this, 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800&q=80')">
+            <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=120&q=80" alt="View 2" />
+          </button>
+          <button class="thumb" onclick="setMainImg(this, 'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=800&q=80')">
+            <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=120&q=80" alt="View 3" />
+          </button>
+          <button class="thumb" onclick="setMainImg(this, 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80')">
+            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=120&q=80" alt="View 4" />
+          </button>
+        </div>
+        <div class="product-gallery__main">
+          <img id="mainImg" src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=800&q=80" alt="Linen Midi Wrap Dress" />
+          <span class="badge badge--new" style="position:absolute;top:1rem;left:1rem;">New</span>
+        </div>
+      </div>
+
+      <!-- PRODUCT INFO -->
+      <div class="product-info">
+        <p class="product-info__brand">WearMonkie</p>
+        <h1 class="product-info__title">Linen Midi Wrap Dress</h1>
+
+        <div class="product-info__rating">
+          <span class="stars">★★★★★</span>
+          <a href="#reviews" class="rating-link">4.9 (34 reviews)</a>
+        </div>
+
+        <div class="product-info__price">
+          <span class="price price--lg">$89.00</span>
+        </div>
+
+        <p class="product-info__desc">
+          A summer wardrobe essential. This effortlessly chic wrap dress is crafted from breathable linen with a flattering self-tie waist. Midi length hits just below the knee for a versatile look — dress up with heels or keep it casual with sandals.
+        </p>
+
+        <!-- COLOR -->
+        <div class="product-option">
+          <p class="product-option__label">Color: <strong id="selectedColor">Camel</strong></p>
+          <div class="swatch-group">
+            <button class="swatch swatch--lg active" style="background:#d4a574;" title="Camel" onclick="selectColor(this,'Camel')"></button>
+            <button class="swatch swatch--lg" style="background:#8fafb8;" title="Slate Blue" onclick="selectColor(this,'Slate Blue')"></button>
+            <button class="swatch swatch--lg" style="background:#e8d5c4;" title="Blush" onclick="selectColor(this,'Blush')"></button>
+            <button class="swatch swatch--lg" style="background:#a3b899;" title="Sage" onclick="selectColor(this,'Sage')"></button>
+          </div>
+        </div>
+
+        <!-- SIZE -->
+        <div class="product-option">
+          <div class="product-option__labelrow">
+            <p class="product-option__label">Size: <strong id="selectedSize">Select size</strong></p>
+            <a href="#" class="size-guide-link">Size Guide</a>
+          </div>
+          <div class="size-group">
+            <button class="size-btn" onclick="selectSize(this)">XS</button>
+            <button class="size-btn" onclick="selectSize(this)">S</button>
+            <button class="size-btn active" onclick="selectSize(this)">M</button>
+            <button class="size-btn" onclick="selectSize(this)">L</button>
+            <button class="size-btn" onclick="selectSize(this)">XL</button>
+            <button class="size-btn" onclick="selectSize(this)">2X</button>
+            <button class="size-btn size-btn--sold-out" disabled>3X</button>
+          </div>
+        </div>
+
+        <!-- QUANTITY -->
+        <div class="product-option">
+          <p class="product-option__label">Quantity</p>
+          <div class="qty-selector">
+            <button onclick="changeQty(-1)" class="qty-btn">−</button>
+            <span id="qty" class="qty-value">1</span>
+            <button onclick="changeQty(1)" class="qty-btn">+</button>
+          </div>
+        </div>
+
+        <!-- ADD TO CART + WISHLIST -->
+        <div class="product-info__ctas">
+          <button class="btn btn--primary btn--lg" style="flex:1;">Add to Cart</button>
+          <button class="btn btn--outline btn--icon-only" aria-label="Wishlist">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+        </div>
+
+        <button class="btn btn--dark btn--lg" style="width:100%;margin-top:.75rem;">Buy Now</button>
+
+        <!-- TRUST MICRO -->
+        <div class="micro-trust">
+          <span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> Free shipping over $75</span>
+          <span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg> 30-day returns</span>
+          <span><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Secure checkout</span>
+        </div>
+
+        <!-- ACCORDION DETAILS -->
+        <div class="accordion">
+          <details class="accordion__item" open>
+            <summary class="accordion__summary">Product Details</summary>
+            <div class="accordion__body">
+              <ul>
+                <li>100% breathable linen fabric</li>
+                <li>Self-tie adjustable waist</li>
+                <li>V-neckline with wrap front</li>
+                <li>Midi length (approx. 46" from shoulder)</li>
+                <li>Side seam pockets</li>
+                <li>Partially lined</li>
+              </ul>
+            </div>
+          </details>
+          <details class="accordion__item">
+            <summary class="accordion__summary">Sizing & Fit</summary>
+            <div class="accordion__body">
+              <p>Model is 5'9" and wearing size Small. This style runs true to size. For a looser fit, size up.</p>
+              <table class="size-table">
+                <thead><tr><th>Size</th><th>Bust</th><th>Waist</th><th>Hip</th></tr></thead>
+                <tbody>
+                  <tr><td>XS</td><td>32"</td><td>25"</td><td>35"</td></tr>
+                  <tr><td>S</td><td>34"</td><td>27"</td><td>37"</td></tr>
+                  <tr><td>M</td><td>36"</td><td>29"</td><td>39"</td></tr>
+                  <tr><td>L</td><td>38"</td><td>31"</td><td>41"</td></tr>
+                  <tr><td>XL</td><td>40"</td><td>33"</td><td>43"</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </details>
+          <details class="accordion__item">
+            <summary class="accordion__summary">Care Instructions</summary>
+            <div class="accordion__body">
+              <p>Machine wash cold on delicate cycle. Lay flat to dry or tumble dry low. Cool iron if needed. Do not bleach.</p>
+            </div>
+          </details>
+          <details class="accordion__item">
+            <summary class="accordion__summary">Shipping & Returns</summary>
+            <div class="accordion__body">
+              <p>Free standard shipping on orders over $75. Express available at checkout. Returns accepted within 30 days of delivery — unworn, with tags.</p>
+            </div>
+          </details>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section id="reviews" class="reviews section container">
+      <h2 class="section__title">Customer Reviews</h2>
+      <div class="reviews__summary">
+        <div class="reviews__score">
+          <span class="reviews__big-score">4.9</span>
+          <div class="stars stars--lg">★★★★★</div>
+          <p>34 reviews</p>
+        </div>
+        <div class="reviews__bars">
+          <div class="review-bar"><span>5 ★</span><div class="bar"><div class="bar__fill" style="width:88%"></div></div><span>30</span></div>
+          <div class="review-bar"><span>4 ★</span><div class="bar"><div class="bar__fill" style="width:9%"></div></div><span>3</span></div>
+          <div class="review-bar"><span>3 ★</span><div class="bar"><div class="bar__fill" style="width:3%"></div></div><span>1</span></div>
+          <div class="review-bar"><span>2 ★</span><div class="bar"><div class="bar__fill" style="width:0%"></div></div><span>0</span></div>
+          <div class="review-bar"><span>1 ★</span><div class="bar"><div class="bar__fill" style="width:0%"></div></div><span>0</span></div>
+        </div>
+      </div>
+
+      <div class="reviews__list">
+        <div class="review-card">
+          <div class="review-card__header">
+            <strong>Sarah M.</strong>
+            <span class="review-stars">★★★★★</span>
+            <span class="review-date">May 2025</span>
+          </div>
+          <p class="review-tag">Size: M &nbsp;|&nbsp; Color: Camel &nbsp;|&nbsp; <em>True to size</em></p>
+          <p class="review-body">Absolutely obsessed with this dress. The linen is so soft and breathable, perfect for summer. I wore it to a garden party and got so many compliments. The tie waist is super flattering. Will be buying in another color!</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card__header">
+            <strong>Jessica L.</strong>
+            <span class="review-stars">★★★★★</span>
+            <span class="review-date">April 2025</span>
+          </div>
+          <p class="review-tag">Size: S &nbsp;|&nbsp; Color: Blush &nbsp;|&nbsp; <em>True to size</em></p>
+          <p class="review-body">The quality is incredible for the price. I love that it has pockets! The blush color is even prettier in person. Fits beautifully and drapes so elegantly. Highly recommend.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card__header">
+            <strong>Tanya R.</strong>
+            <span class="review-stars">★★★★☆</span>
+            <span class="review-date">March 2025</span>
+          </div>
+          <p class="review-tag">Size: L &nbsp;|&nbsp; Color: Slate Blue &nbsp;|&nbsp; <em>Sized up</em></p>
+          <p class="review-body">Love the style and fabric. I sized up for a relaxed fit which was the right call. Shipping was fast. The only minor thing is the linen wrinkles easily, but that's expected with this material.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- YOU MAY ALSO LIKE -->
+    <section class="featured section container">
+      <div class="section__header">
+        <h2 class="section__title">You May Also Like</h2>
+      </div>
+      <div class="products__grid">
+        <div class="product-card">
+          <a href="product.html" class="product-card__link">
+            <div class="product-card__img-wrap">
+              <img src="https://images.unsplash.com/photo-1617922001439-4a2e6562f328?w=600&q=80" alt="Floral Dress" class="product-card__img" />
+            </div>
+            <div class="product-card__info">
+              <h3 class="product-card__name">Floral Wrap Sundress</h3>
+              <div class="product-card__price"><span class="price">$95.00</span></div>
+            </div>
+          </a>
+          <button class="btn btn--add-cart">Add to Cart</button>
+        </div>
+        <div class="product-card">
+          <a href="product.html" class="product-card__link">
+            <div class="product-card__img-wrap">
+              <img src="https://images.unsplash.com/photo-1554412933-514a83d2f3c8?w=600&q=80" alt="Linen Set" class="product-card__img" />
+            </div>
+            <div class="product-card__info">
+              <h3 class="product-card__name">Linen Co-ord Set</h3>
+              <div class="product-card__price"><span class="price">$112.00</span></div>
+            </div>
+          </a>
+          <button class="btn btn--add-cart">Add to Cart</button>
+        </div>
+        <div class="product-card">
+          <a href="product.html" class="product-card__link">
+            <div class="product-card__img-wrap">
+              <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80" alt="Satin Blouse" class="product-card__img" />
+            </div>
+            <div class="product-card__info">
+              <h3 class="product-card__name">Draped Satin Blouse</h3>
+              <div class="product-card__price"><span class="price">$62.00</span></div>
+            </div>
+          </a>
+          <button class="btn btn--add-cart">Add to Cart</button>
+        </div>
+        <div class="product-card">
+          <a href="product.html" class="product-card__link">
+            <div class="product-card__img-wrap">
+              <img src="https://images.unsplash.com/photo-1562157873-818bc0726f68?w=600&q=80" alt="Mini Skirt" class="product-card__img" />
+            </div>
+            <div class="product-card__info">
+              <h3 class="product-card__name">Pleated Mini Skirt</h3>
+              <div class="product-card__price"><span class="price">$55.00</span></div>
+            </div>
+          </a>
+          <button class="btn btn--add-cart">Add to Cart</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner container">
+      <div class="footer__col">
+        <h3 class="footer__logo">WearMonkie</h3>
+        <p class="footer__tagline">Effortless style for every woman.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="collections.html">New Arrivals</a></li>
+          <li><a href="collections.html">Dresses</a></li>
+          <li><a href="collections.html">Tops & Blouses</a></li>
+          <li><a href="collections.html">Bottoms</a></li>
+          <li><a href="collections.html">Sale</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#">Sizing Guide</a></li>
+          <li><a href="#">Shipping & Returns</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom container">
+      <p>© 2025 WearMonkie. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
