@@ -1,0 +1,78 @@
+{
+  "general": {
+    "breadcrumbs": { "home": "Home" },
+    "search": { "search": "Search" },
+    "continue_shopping": "Continue Shopping",
+    "pagination": { "previous": "Prev", "next": "Next" }
+  },
+  "accessibility": {
+    "skip_to_text": "Skip to content",
+    "refresh_page": "Refresh page",
+    "link_messages": { "new_window": "Opens in a new window" }
+  },
+  "newsletter": {
+    "label": "Email address",
+    "email_placeholder": "Your email address",
+    "button_label": "Subscribe",
+    "success": "Thanks for subscribing!",
+    "error": "Please enter a valid email address."
+  },
+  "customer": { "account": { "title": "Account" } },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to Cart",
+      "sold_out": "Sold Out",
+      "add_to_wishlist": "Add to Wishlist",
+      "quantity": {
+        "label": "Quantity",
+        "input_label": "Quantity for {product}",
+        "increase": "Increase quantity",
+        "decrease": "Decrease quantity"
+      },
+      "trust": {
+        "shipping": "Free shipping over $75",
+        "returns": "30-day returns",
+        "secure": "Secure checkout"
+      },
+      "reviews": "reviews",
+      "media": { "load_image": "Load image" }
+    }
+  },
+  "sections": {
+    "cart": {
+      "title": "Your Cart",
+      "empty": "Your cart is empty",
+      "empty_subtext": "Looks like you have not added anything yet.",
+      "subtotal": "Subtotal",
+      "shipping": "Shipping",
+      "taxes": "Tax",
+      "estimated_total": "Total",
+      "checkout": "Proceed to Checkout",
+      "secure": "Secure SSL checkout — your data is safe.",
+      "order_summary": "Order Summary",
+      "discounts": {
+        "discount_code": "Promo code",
+        "apply_discount_code": "Apply",
+        "title": "Discount"
+      },
+      "calculated_at_checkout": "Calculated at checkout",
+      "remove_title": "Remove {title}",
+      "quantities": {
+        "increase": "Increase quantity",
+        "decrease": "Decrease quantity"
+      }
+    },
+    "collection_template": {
+      "filter_and_sort": "Filter",
+      "clear_all": "Clear All Filters",
+      "sort_by_label": "Sort by:",
+      "empty": "No products found.",
+      "from": "From",
+      "to": "To",
+      "product_count_simple": "{count} products"
+    },
+    "featured_collection": { "view_all": "View all" },
+    "cart_icon_bubble": { "title": "Cart" }
+  },
+  "onboarding": { "product_title": "Example Product" }
+}

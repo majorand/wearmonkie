@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WearMonkie — Women's Apparel</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ANNOUNCEMENT BAR -->
+  <div class="announcement-bar">
+    Free shipping on orders over $75 &nbsp;·&nbsp; Use code <strong>WELCOME15</strong> for 15% off your first order
+  </div>
+
+  <!-- HEADER / NAV -->
+  <header class="header">
+    <nav class="nav container">
+      <div class="nav__left">
+        <a href="#" class="nav__link">New Arrivals</a>
+        <a href="collections.html" class="nav__link">Collections</a>
+        <a href="#" class="nav__link">Sale</a>
+      </div>
+      <a href="index.html" class="nav__logo">WearMonkie</a>
+      <div class="nav__right">
+        <a href="#" class="nav__icon" aria-label="Search">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </a>
+        <a href="#" class="nav__icon" aria-label="Account">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </a>
+        <a href="cart.html" class="nav__icon nav__cart" aria-label="Cart">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="cart-badge">2</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero__media">
+        <img
+          src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=1600&q=80"
+          alt="Woman in elegant summer dress"
+          class="hero__img"
+        />
+        <div class="hero__overlay"></div>
+      </div>
+      <div class="hero__content container">
+        <p class="hero__eyebrow">Summer 2025 Collection</p>
+        <h1 class="hero__title">Dress for the<br />Life You Want</h1>
+        <p class="hero__sub">Effortless styles made for real women — from morning coffee to midnight magic.</p>
+        <div class="hero__ctas">
+          <a href="collections.html" class="btn btn--primary">Shop Now</a>
+          <a href="#featured" class="btn btn--ghost">Explore Looks</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORY TILES -->
+    <section class="categories section container">
+      <h2 class="section__title">Shop by Category</h2>
+      <div class="categories__grid">
+        <a href="collections.html" class="cat-tile">
+          <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600&q=80" alt="Dresses" class="cat-tile__img" />
+          <div class="cat-tile__label">Dresses</div>
+        </a>
+        <a href="collections.html" class="cat-tile">
+          <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&q=80" alt="Tops" class="cat-tile__img" />
+          <div class="cat-tile__label">Tops</div>
+        </a>
+        <a href="collections.html" class="cat-tile">
+          <img src="https://images.unsplash.com/photo-1594938298603-c8148c4b4fba?w=600&q=80" alt="Bottoms" class="cat-tile__img" />
+          <div class="cat-tile__label">Bottoms</div>
+        </a>
+        <a href="collections.html" class="cat-tile">
+          <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=600&q=80" alt="Outerwear" class="cat-tile__img" />
+          <div class="cat-tile__label">Outerwear</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- FEATURED PRODUCTS -->
+    <section id="featured" class="featured section container">
+      <div class="section__header">
+        <h2 class="section__title">New Arrivals</h2>
+        <a href="collections.html" class="link-arrow">View all →</a>
+      </div>
+      <div class="products__grid">
+
+        <div class="product-card">
+          <a href="product.html" class="product-card__link">
+            <div class="product-card__img-wrap">
+              <img src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=600&q=80" alt="Linen Midi Dress" class="product-card__img" />
+              <span class="badge badge--new">New</span>
+              <div class="product-card__actions">
+                <button class="btn-icon" aria-label="Quick view">
+                  <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+                <button class="btn-icon" aria-label="Wishlist">
+                  <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </button>
+              </div>
+            </div>
+            <div class="product-card__info">
+              <p class="product-card__brand">WearMonkie</p>
+              <h3 class="product-card__name">Linen Midi Wrap Dress</h3>
+              <div class="product-card__price">
+                <span class="price">$89.00</span>
+              </div>
+              <div class="product-card__swatches">
+                <span class="swatch" style="background:#d4a574;" title="Camel"></span>
+                <span class="swatch" style="background:#8fafb8;" title="Slate Blue"></span>
+                <span class="swatch" style="background:#e8d5c4;" title="Blush"></span>
+              </div>
+            </div>
+          </a>
+          <button class="btn btn--add-cart">Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+          <a href="product.html" class="product-card__link">
+            <div class="product-card__img-wrap">
+              <img src="https://images.unsplash.com/photo-1532453288672-3a17ac36f5d3?w=600&q=80" alt="Ribbed Tank" class="product-card__img" />
+              <span class="badge badge--sale">−25%</span>
+              <div class="product-card__actions">
+                <button class="btn-icon" aria-label="Quick view">
+                  <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+                <button class="btn-icon" aria-label="Wishlist">
+                  <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </button>
+              </div>
+            </div>
+            <div class="product-card__info">
+              <p class="product-card__brand">WearMonkie</p>
+              <h3 class="product-card__name">Essential Ribbed Tank</h3>
+              <div class="product-card__price">
+                <span class="price price--sale">$29.00</span>
+                <span class="price price--original">$38.00</span>
+              </div>
+              <div class="product-card__swatches">
+                <span class="swatch" style="background:#2c2c2c;" title="Black"></span>
+                <span class="swatch" style="background:#f5f0eb;" title="Cream"></span>
+                <span class="swatch" style="background:#c4a4b8;" title="Mauve"></span>
+              </div>
+            </div>
+          </a>
+          <button class="btn btn--add-cart">Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+          <a href="product.html" class="product-card__link">
+            <div class="product-card__img-wrap">
+              <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=600&q=80" alt="Wide Leg Trousers" class="product-card__img" />
+              <div class="product-card__actions">
+                <button class="btn-icon" aria-label="Quick view">
+                  <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+                <button class="btn-icon" aria-label="Wishlist">
+                  <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </button>
+              </div>
+            </div>
+            <div class="product-card__info">
+              <p class="product-card__brand">WearMonkie</p>
+              <h3 class="product-card__name">High-Waist Wide Leg Trousers</h3>
+              <div class="product-card__price">
+                <span class="price">$74.00</span>
+              </div>
+              <div class="product-card__swatches">
+                <span class="swatch" style="background:#6b7c8a;" title="Steel"></span>
+                <span class="swatch" style="background:#c8b8a0;" title="Sand"></span>
+              </div>
+            </div>
+          </a>
+          <button class="btn btn--add-cart">Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+          <a href="product.html" class="product-card__link">
+            <div class="product-card__img-wrap">
+              <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80" alt="Satin Blouse" class="product-card__img" />
+              <span class="badge badge--new">New</span>
+              <div class="product-card__actions">
+                <button class="btn-icon" aria-label="Quick view">
+                  <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+                <button class="btn-icon" aria-label="Wishlist">
+                  <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </button>
+              </div>
+            </div>
+            <div class="product-card__info">
+              <p class="product-card__brand">WearMonkie</p>
+              <h3 class="product-card__name">Draped Satin Blouse</h3>
+              <div class="product-card__price">
+                <span class="price">$62.00</span>
+              </div>
+              <div class="product-card__swatches">
+                <span class="swatch" style="background:#d4af8c;" title="Champagne"></span>
+                <span class="swatch" style="background:#2c2c2c;" title="Black"></span>
+                <span class="swatch" style="background:#7c9bb5;" title="Dusty Blue"></span>
+              </div>
+            </div>
+          </a>
+          <button class="btn btn--add-cart">Add to Cart</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- EDITORIAL BANNER -->
+    <section class="editorial section">
+      <div class="editorial__inner container">
+        <div class="editorial__text">
+          <p class="editorial__eyebrow">The Edit</p>
+          <h2 class="editorial__title">Built for the<br />Modern Woman</h2>
+          <p class="editorial__body">Every piece in our collection is designed with intention — comfortable enough for all-day wear, polished enough for any occasion. Sustainable fabrics, inclusive sizing XS–3X.</p>
+          <a href="collections.html" class="btn btn--dark">Explore the Collection</a>
+        </div>
+        <div class="editorial__image">
+          <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800&q=80" alt="Editorial fashion shoot" />
+        </div>
+      </div>
+    </section>
+
+    <!-- BEST SELLERS -->
+    <section class="featured section container">
+      <div class="section__header">
+        <h2 class="section__title">Best Sellers</h2>
+        <a href="collections.html" class="link-arrow">View all →</a>
+      </div>
+      <div class="products__grid">
+
+        <div class="product-card">
+          <a href="product.html" class="product-card__link">
+            <div class="product-card__img-wrap">
+              <img src="https://images.unsplash.com/photo-1617922001439-4a2e6562f328?w=600&q=80" alt="Floral Sundress" class="product-card__img" />
+              <span class="badge badge--bestseller">Best Seller</span>
+              <div class="product-card__actions">
+                <button class="btn-icon" aria-label="Wishlist">
+                  <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </button>
+              </div>
+            </div>
+            <div class="product-card__info">
+              <p class="product-card__brand">WearMonkie</p>
+              <h3 class="product-card__name">Floral Wrap Sundress</h3>
+              <div class="product-card__stars">★★★★★ <span>(142)</span></div>
+              <div class="product-card__price"><span class="price">$95.00</span></div>
+            </div>
+          </a>
+          <button class="btn btn--add-cart">Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+          <a href="product.html" class="product-card__link">
+            <div class="product-card__img-wrap">
+              <img src="https://images.unsplash.com/photo-1544441893-675973e31985?w=600&q=80" alt="Oversized Blazer" class="product-card__img" />
+              <span class="badge badge--bestseller">Best Seller</span>
+              <div class="product-card__actions">
+                <button class="btn-icon" aria-label="Wishlist">
+                  <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </button>
+              </div>
+            </div>
+            <div class="product-card__info">
+              <p class="product-card__brand">WearMonkie</p>
+              <h3 class="product-card__name">Oversized Power Blazer</h3>
+              <div class="product-card__stars">★★★★☆ <span>(98)</span></div>
+              <div class="product-card__price"><span class="price">$118.00</span></div>
+            </div>
+          </a>
+          <button class="btn btn--add-cart">Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+          <a href="product.html" class="product-card__link">
+            <div class="product-card__img-wrap">
+              <img src="https://images.unsplash.com/photo-1562157873-818bc0726f68?w=600&q=80" alt="Mini Skirt" class="product-card__img" />
+              <div class="product-card__actions">
+                <button class="btn-icon" aria-label="Wishlist">
+                  <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </button>
+              </div>
+            </div>
+            <div class="product-card__info">
+              <p class="product-card__brand">WearMonkie</p>
+              <h3 class="product-card__name">Pleated Mini Skirt</h3>
+              <div class="product-card__stars">★★★★★ <span>(76)</span></div>
+              <div class="product-card__price"><span class="price">$55.00</span></div>
+            </div>
+          </a>
+          <button class="btn btn--add-cart">Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+          <a href="product.html" class="product-card__link">
+            <div class="product-card__img-wrap">
+              <img src="https://images.unsplash.com/photo-1583744946564-b52ac1c389c8?w=600&q=80" alt="Knit Cardigan" class="product-card__img" />
+              <span class="badge badge--bestseller">Best Seller</span>
+              <div class="product-card__actions">
+                <button class="btn-icon" aria-label="Wishlist">
+                  <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </button>
+              </div>
+            </div>
+            <div class="product-card__info">
+              <p class="product-card__brand">WearMonkie</p>
+              <h3 class="product-card__name">Chunky Knit Cardigan</h3>
+              <div class="product-card__stars">★★★★★ <span>(201)</span></div>
+              <div class="product-card__price"><span class="price">$82.00</span></div>
+            </div>
+          </a>
+          <button class="btn btn--add-cart">Add to Cart</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TRUST BADGES -->
+    <section class="trust section container">
+      <div class="trust__grid">
+        <div class="trust__item">
+          <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          <h4>Free Shipping</h4>
+          <p>On all orders over $75</p>
+        </div>
+        <div class="trust__item">
+          <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+          <h4>Easy Returns</h4>
+          <p>30-day hassle-free returns</p>
+        </div>
+        <div class="trust__item">
+          <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <h4>Secure Checkout</h4>
+          <p>SSL encrypted payments</p>
+        </div>
+        <div class="trust__item">
+          <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <h4>Style Support</h4>
+          <p>Personal styling advice</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- INSTAGRAM / SOCIAL PROOF -->
+    <section class="insta section container">
+      <h2 class="section__title">@wearmonkie</h2>
+      <p class="insta__sub">Tag us in your looks for a chance to be featured</p>
+      <div class="insta__grid">
+        <a href="#" class="insta__item"><img src="https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=400&q=80" alt="Instagram post" /></a>
+        <a href="#" class="insta__item"><img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=400&q=80" alt="Instagram post" /></a>
+        <a href="#" class="insta__item"><img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=400&q=80" alt="Instagram post" /></a>
+        <a href="#" class="insta__item"><img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=400&q=80" alt="Instagram post" /></a>
+        <a href="#" class="insta__item"><img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400&q=80" alt="Instagram post" /></a>
+        <a href="#" class="insta__item"><img src="https://images.unsplash.com/photo-1554412933-514a83d2f3c8?w=400&q=80" alt="Instagram post" /></a>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="newsletter">
+      <div class="newsletter__inner container">
+        <h2 class="newsletter__title">Get First Access</h2>
+        <p class="newsletter__sub">New drops, exclusive offers, and style inspo — straight to your inbox.</p>
+        <form class="newsletter__form" onsubmit="return false;">
+          <input type="email" placeholder="Your email address" class="newsletter__input" />
+          <button type="submit" class="btn btn--primary">Subscribe</button>
+        </form>
+        <p class="newsletter__note">No spam, ever. Unsubscribe anytime.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner container">
+      <div class="footer__col">
+        <h3 class="footer__logo">WearMonkie</h3>
+        <p class="footer__tagline">Effortless style for every woman.</p>
+        <div class="footer__socials">
+          <a href="#" aria-label="Instagram">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" aria-label="TikTok">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.73a8.26 8.26 0 0 0 4.84 1.56V6.84a4.85 4.85 0 0 1-1.07-.15z"/></svg>
+          </a>
+          <a href="#" aria-label="Pinterest">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.08 3.14 9.43 7.63 11.17-.1-.97-.2-2.46.04-3.52.22-.95 1.47-6.23 1.47-6.23s-.37-.75-.37-1.86c0-1.75 1.01-3.06 2.27-3.06 1.07 0 1.59.8 1.59 1.77 0 1.08-.69 2.69-1.04 4.18-.3 1.25.62 2.27 1.84 2.27 2.21 0 3.7-2.85 3.7-6.22 0-2.57-1.74-4.37-4.22-4.37-2.87 0-4.56 2.15-4.56 4.38 0 .87.33 1.8.75 2.3.08.1.09.19.07.29-.08.31-.25 1-.28 1.13-.04.18-.14.22-.31.13-1.17-.54-1.9-2.26-1.9-3.63 0-2.96 2.15-5.68 6.2-5.68 3.25 0 5.78 2.32 5.78 5.41 0 3.23-2.03 5.82-4.84 5.82-.94 0-1.83-.49-2.14-1.07l-.58 2.18c-.21.81-.77 1.82-1.15 2.44.87.27 1.78.41 2.73.41 6.63 0 12-5.37 12-12S18.63 0 12 0z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="collections.html">New Arrivals</a></li>
+          <li><a href="collections.html">Dresses</a></li>
+          <li><a href="collections.html">Tops & Blouses</a></li>
+          <li><a href="collections.html">Bottoms</a></li>
+          <li><a href="collections.html">Outerwear</a></li>
+          <li><a href="collections.html">Sale</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#">Sizing Guide</a></li>
+          <li><a href="#">Shipping & Returns</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Track Order</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Sustainability</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Affiliates</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom container">
+      <p>© 2025 WearMonkie. All rights reserved.</p>
+      <div class="footer__legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+      <div class="footer__payments">
+        <span class="payment-badge">VISA</span>
+        <span class="payment-badge">MC</span>
+        <span class="payment-badge">AMEX</span>
+        <span class="payment-badge">PayPal</span>
+        <span class="payment-badge">Apple Pay</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
