@@ -1,0 +1,77 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-banner",
+      "settings": {
+        "heading": "Dress for the Life You Want",
+        "subheading": "Effortless styles made for real women — from morning coffee to midnight magic.",
+        "eyebrow": "Summer 2025 Collection",
+        "button_label": "Shop Now",
+        "button_url": "/collections/all",
+        "secondary_button_label": "Explore Looks",
+        "secondary_button_url": "#featured",
+        "overlay_opacity": 50
+      }
+    },
+    "categories": {
+      "type": "category-tiles",
+      "settings": {
+        "heading": "Shop by Category"
+      }
+    },
+    "featured-products": {
+      "type": "featured-collection",
+      "settings": {
+        "heading": "New Arrivals",
+        "collection": "new-arrivals",
+        "products_to_show": 4
+      }
+    },
+    "editorial": {
+      "type": "editorial-banner",
+      "settings": {
+        "eyebrow": "The Edit",
+        "heading": "Built for the Modern Woman",
+        "body": "Every piece in our collection is designed with intention — comfortable enough for all-day wear, polished enough for any occasion. Sustainable fabrics, inclusive sizing XS–3X.",
+        "button_label": "Explore the Collection",
+        "button_url": "/collections/all"
+      }
+    },
+    "best-sellers": {
+      "type": "featured-collection",
+      "settings": {
+        "heading": "Best Sellers",
+        "collection": "best-sellers",
+        "products_to_show": 4
+      }
+    },
+    "trust-badges": {
+      "type": "trust-badges",
+      "settings": {}
+    },
+    "instagram": {
+      "type": "instagram-grid",
+      "settings": {
+        "heading": "@wearmonkie",
+        "subheading": "Tag us in your looks for a chance to be featured"
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "heading": "Get First Access",
+        "subheading": "New drops, exclusive offers, and style inspo — straight to your inbox."
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "categories",
+    "featured-products",
+    "editorial",
+    "best-sellers",
+    "trust-badges",
+    "instagram",
+    "newsletter"
+  ]
+}
