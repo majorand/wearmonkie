@@ -1,12 +1,13 @@
 {
   "current": {
     "announcement_bar_enabled": true,
-    "announcement_text": "Free shipping on orders over $75 &nbsp;&middot;&nbsp; Use code <strong>WELCOME15<\/strong> for 15% off your first order",
+    "announcement_text": "<p>Free shipping on orders over $75 &middot; Use code <strong>WELCOME15<\/strong> for 15% off your first order<\/p>",
     "menu": "main-menu",
+    "show_search": true,
+    "footer_tagline": "Effortless style for every woman.",
     "footer_menu_1_heading": "Shop",
     "footer_menu_2_heading": "Help",
-    "footer_menu_3_heading": "Company",
-    "show_search": true,
-    "footer_tagline": "Effortless style for every woman."
-  }
+    "footer_menu_3_heading": "Company"
+  },
+  "presets": {}
 }

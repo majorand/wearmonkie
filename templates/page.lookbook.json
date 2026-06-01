@@ -1,0 +1,137 @@
+{
+  "sections": {
+    "hero": {
+      "type": "editorial-hero",
+      "settings": {
+        "eyebrow": "The Campaign",
+        "heading": "Made to Be Remembered",
+        "subheading": "A wardrobe edit for the moments that matter — and the everyday ones that quietly do too.",
+        "button_label": "Shop the Story",
+        "button_url": "/collections/all",
+        "secondary_button_label": "Discover the Look",
+        "secondary_button_url": "#shopify-section-lookbook",
+        "overlay_opacity": 50,
+        "height": 96,
+        "text_align": "center",
+        "show_scroll_cue": true,
+        "scroll_label": "Explore"
+      }
+    },
+    "marquee": {
+      "type": "marquee",
+      "blocks": {
+        "m1": { "type": "phrase", "settings": { "text": "The Fall Campaign" } },
+        "m2": { "type": "phrase", "settings": { "text": "Limited Edition Pieces" } },
+        "m3": { "type": "phrase", "settings": { "text": "Styled by Our Editors" } },
+        "m4": { "type": "phrase", "settings": { "text": "Shop the Whole Look" } }
+      },
+      "block_order": ["m1", "m2", "m3", "m4"],
+      "settings": { "speed": 26, "separator": "✦", "invert": true }
+    },
+    "spotlight": {
+      "type": "product-spotlight",
+      "settings": {
+        "eyebrow": "The Hero Piece",
+        "heading": "The Statement Coat",
+        "body": "Hand-finished wool-blend tailoring with a sculptural collar and an unlined drape that moves with you. The one piece that elevates everything beneath it.",
+        "price": "$268",
+        "button_label": "Shop the Coat",
+        "button_url": "/collections/outerwear",
+        "reverse": false,
+        "background": "#f3ede8"
+      },
+      "blocks": {
+        "s1": { "type": "feature", "settings": { "text": "Responsibly sourced wool blend" } },
+        "s2": { "type": "feature", "settings": { "text": "Sculptural stand collar" } },
+        "s3": { "type": "feature", "settings": { "text": "Tailored in sizes XS–3X" } }
+      },
+      "block_order": ["s1", "s2", "s3"]
+    },
+    "lookbook": {
+      "type": "lookbook",
+      "settings": {
+        "eyebrow": "Shop the Look",
+        "heading": "The Complete Outfit",
+        "text": "Every piece from the campaign image — tap a marker to add it to your bag."
+      },
+      "blocks": {
+        "h1": { "type": "hotspot", "settings": { "x": 40, "y": 26, "label": "Cashmere Roll Neck", "price": "$118" } },
+        "h2": { "type": "hotspot", "settings": { "x": 50, "y": 58, "label": "Belted Wool Trouser", "price": "$138" } },
+        "h3": { "type": "hotspot", "settings": { "x": 33, "y": 72, "label": "Knee Leather Boot", "price": "$224" } },
+        "h4": { "type": "hotspot", "settings": { "x": 64, "y": 44, "label": "Structured Tote", "price": "$186" } }
+      },
+      "block_order": ["h1", "h2", "h3", "h4"]
+    },
+    "showcase": {
+      "type": "collection-showcase",
+      "settings": {
+        "reverse": true,
+        "badge": "Editor's Pick",
+        "eyebrow": "Behind the Edit",
+        "heading": "Considered, Not Disposable",
+        "body": "We design fewer, better pieces — fabrics chosen to last, fits refined over dozens of fittings, and details you'll still love three seasons from now.",
+        "button_label": "Read Our Story",
+        "button_url": "/pages/about",
+        "collection": "best-sellers"
+      },
+      "blocks": {
+        "f1": { "type": "feature", "settings": { "text": "Low-impact, traceable materials" } },
+        "f2": { "type": "feature", "settings": { "text": "Refined across 30+ fittings" } },
+        "f3": { "type": "feature", "settings": { "text": "Made in small, ethical runs" } }
+      },
+      "block_order": ["f1", "f2", "f3"]
+    },
+    "featured": {
+      "type": "featured-collection",
+      "settings": {
+        "heading": "Complete the Collection",
+        "collection": "new-arrivals",
+        "products_to_show": 4
+      }
+    },
+    "countdown": {
+      "type": "countdown-banner",
+      "settings": {
+        "eyebrow": "Early Access",
+        "heading": "The Campaign Drops Friday",
+        "subheading": "Subscribers shop the full collection 24 hours early. Set your reminder — these pieces are made in limited runs.",
+        "deadline": "2026-07-04 10:00",
+        "button_label": "Get Early Access",
+        "button_url": "#shopify-section-newsletter",
+        "use_image": false
+      }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "settings": {
+        "eyebrow": "Worn & Loved",
+        "heading": "From the Community",
+        "rating_text": "4.9 / 5 from 12,000+ reviews"
+      },
+      "blocks": {
+        "t1": { "type": "testimonial", "settings": { "quote": "Every campaign piece I've bought has become a wardrobe staple. Nothing else fits like this.", "name": "Imani T.", "detail": "Verified Buyer · Size XL" } },
+        "t2": { "type": "testimonial", "settings": { "quote": "The coat is a work of art. I get stopped on the street asking where it's from.", "name": "Sofia M.", "detail": "Verified Buyer · Size M" } },
+        "t3": { "type": "testimonial", "settings": { "quote": "Worth every penny. Beautifully made, beautifully packaged, beautifully size-inclusive.", "name": "Leah K.", "detail": "Verified Buyer · Size 2X" } }
+      },
+      "block_order": ["t1", "t2", "t3"]
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "heading": "Be First to the Drop",
+        "subheading": "Early access, styling notes, and the campaign lookbook — straight to your inbox."
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "marquee",
+    "spotlight",
+    "lookbook",
+    "showcase",
+    "featured",
+    "countdown",
+    "testimonials",
+    "newsletter"
+  ]
+}

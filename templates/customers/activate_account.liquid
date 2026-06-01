@@ -1,0 +1,23 @@
+<div class="customer container">
+  <div class="customer__panel">
+    <h1 class="customer__title">{{ 'customer.activate_account.title' | t | default: 'Activate account' }}</h1>
+    <p class="customer__intro">{{ 'customer.activate_account.subtext' | t | default: 'Create your password to activate your account.' }}</p>
+
+    {%- form 'activate_customer_password' -%}
+      {%- if form.errors -%}
+        <div class="customer__errors" role="alert">{{ form.errors | default_errors }}</div>
+      {%- endif -%}
+
+      <label class="customer__label" for="password">{{ 'customer.activate_account.password' | t | default: 'Password' }}</label>
+      <input type="password" name="customer[password]" id="password" class="customer__input" autocomplete="new-password" required>
+
+      <label class="customer__label" for="password_confirmation">{{ 'customer.activate_account.password_confirm' | t | default: 'Confirm password' }}</label>
+      <input type="password" name="customer[password_confirmation]" id="password_confirmation" class="customer__input" autocomplete="new-password" required>
+
+      <div class="customer__actions">
+        <button type="submit" class="btn btn--primary btn--lg">{{ 'customer.activate_account.submit' | t | default: 'Activate account' }}</button>
+        <button type="submit" name="decline" class="btn btn--outline btn--lg">{{ 'customer.activate_account.decline' | t | default: 'Decline invitation' }}</button>
+      </div>
+    {%- endform -%}
+  </div>
+</div>

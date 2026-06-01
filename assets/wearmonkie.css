@@ -1573,3 +1573,87 @@ details[open] .accordion__summary::after {
   .trust__grid { grid-template-columns: 1fr; }
   .footer__inner { grid-template-columns: 1fr; }
 }
+
+/* ========================================
+   CUSTOMER ACCOUNTS
+   ======================================== */
+.customer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+  padding-top: 3rem;
+  padding-bottom: 5rem;
+  align-items: start;
+}
+.customer__panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+}
+.customer__title {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-dark);
+  margin-bottom: 1rem;
+}
+.customer__intro { font-size: 14px; color: var(--color-text-muted); line-height: 1.6; margin-bottom: 1.5rem; }
+.customer__label { display: block; font-size: 13px; font-weight: 500; color: var(--color-dark); margin: 1rem 0 .4rem; }
+.customer__input {
+  width: 100%;
+  padding: .7rem 1rem;
+  font-size: 15px;
+  font-family: inherit;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg);
+  color: var(--color-dark);
+  outline: none;
+  transition: border-color var(--transition);
+}
+.customer__input:focus { border-color: var(--color-dark); }
+textarea.customer__input { resize: vertical; }
+.customer__row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.customer__submit { width: 100%; margin-top: 1.5rem; }
+.customer__actions { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 1.5rem; }
+.customer__alt { font-size: 14px; color: var(--color-text-muted); margin-top: 1.5rem; text-align: center; }
+.customer__link { color: var(--color-accent-dark); font-weight: 500; text-decoration: underline; background: none; padding: 0; font-size: inherit; }
+.customer__link:hover { color: var(--color-dark); }
+.customer__link--danger { color: var(--color-sale); }
+.customer__checkbox { display: flex; align-items: center; gap: .5rem; font-size: 14px; color: var(--color-text-muted); margin-top: 1rem; cursor: pointer; }
+.customer__errors { background: #fdecea; border: 1px solid #f5c6c2; color: var(--color-sale); border-radius: var(--radius); padding: .85rem 1rem; margin-bottom: 1rem; font-size: 14px; }
+.customer__errors ul { list-style: disc; padding-left: 1.25rem; }
+.customer__success { color: var(--color-green); font-size: 14px; margin-bottom: 1rem; }
+
+.customer-account {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 3rem;
+  padding-top: 2.5rem;
+  padding-bottom: 5rem;
+  align-items: start;
+}
+.customer-account__heading { font-family: var(--font-serif); font-size: 1.4rem; font-weight: 700; color: var(--color-dark); margin-bottom: 1.25rem; }
+.customer-account__side { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 1.75rem; }
+.customer-account__side .customer-account__heading:not(:first-child) { margin-top: 2rem; }
+.customer-account__detail { font-size: 14px; color: var(--color-text-muted); margin-bottom: .35rem; }
+.customer-account__address { font-size: 14px; color: var(--color-text-muted); line-height: 1.6; margin: .75rem 0 1.25rem; }
+.customer-account__logout { display: inline-block; margin-top: 1rem; }
+
+.orders-table-wrap { overflow-x: auto; }
+.orders-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.orders-table th, .orders-table td { padding: .85rem 1rem; text-align: left; border-bottom: 1px solid var(--color-border); }
+.orders-table thead th { font-size: 12px; letter-spacing: .04em; text-transform: uppercase; color: var(--color-text-muted); font-weight: 600; }
+.orders-table tfoot td { border-bottom: none; color: var(--color-text-muted); }
+.orders-table__total td { font-weight: 700; color: var(--color-dark); border-top: 2px solid var(--color-border); font-size: 16px; }
+
+.address-card { border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 1.25rem; margin-bottom: 1rem; position: relative; }
+.address-card__default { display: inline-block; background: var(--color-dark); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; padding: .2rem .55rem; border-radius: 2px; margin-bottom: .75rem; }
+.address-card__actions { display: flex; gap: 1rem; margin-top: .75rem; }
+.address-card__actions form { display: inline; }
+
+@media (max-width: 768px) {
+  .customer-account { grid-template-columns: 1fr; }
+  .customer__row { grid-template-columns: 1fr; }
+}

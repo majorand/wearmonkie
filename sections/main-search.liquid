@@ -1,0 +1,98 @@
+<div class="page-header">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="{{ routes.root_url }}">{{ 'general.breadcrumbs.home' | t | default: 'Home' }}</a> /
+      <span aria-current="page">{{ 'general.search.search' | t | default: 'Search' }}</span>
+    </nav>
+    <h1 class="page-header__title">{{ 'general.search.search' | t | default: 'Search' }}</h1>
+  </div>
+</div>
+
+<div class="search-page section container">
+  <form action="{{ routes.search_url }}" method="get" role="search" class="search-form">
+    <input type="hidden" name="type" value="product">
+    <input
+      type="search"
+      name="q"
+      value="{{ search.terms | escape }}"
+      placeholder="{{ 'general.search.placeholder' | t | default: 'Search for products...' }}"
+      aria-label="{{ 'general.search.search' | t | default: 'Search' }}"
+      class="search-form__input"
+      autocomplete="off"
+    >
+    <button type="submit" class="btn btn--primary">{{ 'general.search.search' | t | default: 'Search' }}</button>
+  </form>
+
+  {%- if search.performed -%}
+    {%- if search.results_count > 0 -%}
+      <p class="search-page__count">
+        {{ search.results_count }} {{ 'general.search.results_for' | t | default: 'results for' }} &ldquo;{{ search.terms | escape }}&rdquo;
+      </p>
+      <div class="products__grid">
+        {%- paginate search.results by 12 -%}
+          {%- for item in search.results -%}
+            {%- if item.object_type == 'product' -%}
+              {%- render 'product-card', product: item -%}
+            {%- else -%}
+              <a href="{{ item.url }}" class="search-result-card">
+                <h3>{{ item.title }}</h3>
+                {%- if item.content -%}<p>{{ item.content | strip_html | truncatewords: 24 }}</p>{%- endif -%}
+              </a>
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endpaginate -%}
+      </div>
+
+      {%- paginate search.results by 12 -%}
+        {%- if paginate.pages > 1 -%}
+          <nav class="pagination" aria-label="Pagination">
+            {%- if paginate.previous -%}
+              <a href="{{ paginate.previous.url }}" class="pagination__btn pagination__next">{{ 'general.pagination.previous' | t | default: 'Prev' }}</a>
+            {%- endif -%}
+            {%- for part in paginate.parts -%}
+              {%- if part.is_link -%}
+                <a href="{{ part.url }}" class="pagination__btn">{{ part.title }}</a>
+              {%- else -%}
+                <span class="pagination__btn pagination__btn--active">{{ part.title }}</span>
+              {%- endif -%}
+            {%- endfor -%}
+            {%- if paginate.next -%}
+              <a href="{{ paginate.next.url }}" class="pagination__btn pagination__next">{{ 'general.pagination.next' | t | default: 'Next' }}</a>
+            {%- endif -%}
+          </nav>
+        {%- endif -%}
+      {%- endpaginate -%}
+    {%- else -%}
+      <p class="search-page__empty">{{ 'general.search.no_results' | t | default: 'No results found for' }} &ldquo;{{ search.terms | escape }}&rdquo;. {{ 'general.search.try_again' | t | default: 'Try a different search.' }}</p>
+    {%- endif -%}
+  {%- endif -%}
+</div>
+
+{% stylesheet %}
+.search-form { display: flex; gap: .75rem; max-width: 620px; margin-bottom: 2rem; }
+.search-form__input {
+  flex: 1; padding: .8rem 1.25rem; font-size: 15px; font-family: inherit;
+  border: 1.5px solid var(--color-border); border-radius: var(--radius);
+  background: var(--color-surface); color: var(--color-dark); outline: none;
+  transition: border-color var(--transition);
+}
+.search-form__input:focus { border-color: var(--color-dark); }
+.search-page__count { font-size: 14px; color: var(--color-text-muted); margin-bottom: 1.5rem; }
+.search-page__empty { font-size: 16px; color: var(--color-text-muted); padding: 2rem 0; }
+.search-result-card {
+  display: block; padding: 1.25rem; border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg); background: var(--color-surface); transition: box-shadow var(--transition);
+}
+.search-result-card:hover { box-shadow: var(--shadow-md); }
+.search-result-card h3 { font-size: 15px; font-weight: 600; color: var(--color-dark); margin-bottom: .35rem; }
+.search-result-card p { font-size: 13px; color: var(--color-text-muted); line-height: 1.6; }
+@media (max-width: 540px) { .search-form { flex-direction: column; } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Search",
+  "tag": "section",
+  "settings": []
+}
+{% endschema %}

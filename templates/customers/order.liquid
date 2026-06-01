@@ -1,0 +1,65 @@
+<div class="page-header">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="{{ routes.account_url }}">{{ 'customer.account.title' | t | default: 'My Account' }}</a> /
+      <span aria-current="page">{{ order.name }}</span>
+    </nav>
+    <h1 class="page-header__title">{{ 'customer.order.title' | t: name: order.name | default: order.name }}</h1>
+    <p class="page-header__sub">{{ 'customer.order.date' | t | default: 'Placed on' }} {{ order.created_at | date: '%B %-d, %Y %I:%M %p' }}</p>
+  </div>
+</div>
+
+<div class="customer-account section container">
+  <div class="customer-account__main">
+    <div class="orders-table-wrap">
+      <table class="orders-table">
+        <thead>
+          <tr>
+            <th>{{ 'customer.order.product' | t | default: 'Product' }}</th>
+            <th>{{ 'customer.order.sku' | t | default: 'SKU' }}</th>
+            <th>{{ 'customer.order.price' | t | default: 'Price' }}</th>
+            <th>{{ 'customer.order.quantity' | t | default: 'Qty' }}</th>
+            <th>{{ 'customer.order.total' | t | default: 'Total' }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {%- for line_item in order.line_items -%}
+            <tr>
+              <td>
+                {%- if line_item.url -%}<a href="{{ line_item.url }}" class="customer__link">{{ line_item.title }}</a>{%- else -%}{{ line_item.title }}{%- endif -%}
+                {%- if line_item.variant.title and line_item.variant.title != 'Default Title' -%}<br><small>{{ line_item.variant.title }}</small>{%- endif -%}
+              </td>
+              <td>{{ line_item.sku }}</td>
+              <td>{{ line_item.price | money }}</td>
+              <td>{{ line_item.quantity }}</td>
+              <td>{{ line_item.line_price | money }}</td>
+            </tr>
+          {%- endfor -%}
+        </tbody>
+        <tfoot>
+          <tr><td colspan="4">{{ 'customer.order.subtotal' | t | default: 'Subtotal' }}</td><td>{{ order.line_items_subtotal_price | money }}</td></tr>
+          {%- for discount_application in order.discount_applications -%}
+            <tr><td colspan="4">{{ 'customer.order.discount' | t | default: 'Discount' }} ({{ discount_application.title }})</td><td>-{{ discount_application.total_allocated_amount | money }}</td></tr>
+          {%- endfor -%}
+          {%- for shipping_method in order.shipping_methods -%}
+            <tr><td colspan="4">{{ 'customer.order.shipping' | t | default: 'Shipping' }} ({{ shipping_method.title }})</td><td>{{ shipping_method.price | money }}</td></tr>
+          {%- endfor -%}
+          {%- for tax_line in order.tax_lines -%}
+            <tr><td colspan="4">{{ 'customer.order.tax' | t | default: 'Tax' }} ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%)</td><td>{{ tax_line.price | money }}</td></tr>
+          {%- endfor -%}
+          <tr class="orders-table__total"><td colspan="4">{{ 'customer.order.total' | t | default: 'Total' }}</td><td>{{ order.total_net_amount | money }} {{ order.currency }}</td></tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+
+  <aside class="customer-account__side">
+    <h2 class="customer-account__heading">{{ 'customer.order.billing_address' | t | default: 'Billing Address' }}</h2>
+    <p class="customer-account__detail">{{ 'customer.order.payment_status' | t | default: 'Payment status' }}: {{ order.financial_status_label }}</p>
+    {%- if order.billing_address -%}<div class="customer-account__address">{{ order.billing_address | format_address }}</div>{%- endif -%}
+
+    <h2 class="customer-account__heading">{{ 'customer.order.shipping_address' | t | default: 'Shipping Address' }}</h2>
+    <p class="customer-account__detail">{{ 'customer.order.fulfillment_status' | t | default: 'Fulfillment status' }}: {{ order.fulfillment_status_label }}</p>
+    {%- if order.shipping_address -%}<div class="customer-account__address">{{ order.shipping_address | format_address }}</div>{%- endif -%}
+  </aside>
+</div>
