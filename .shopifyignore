@@ -1,0 +1,18 @@
+# Non-theme files kept in the repo for reference but excluded from
+# `shopify theme push` / `shopify theme dev` (Shopify only accepts the
+# standard theme directories: assets, config, layout, locales, sections,
+# snippets, templates).
+
+# Original static HTML mockups (superseded by the Liquid theme)
+index.html
+cart.html
+collections.html
+product.html
+main.js
+styles.css
+
+# Repo meta
+README.md
+.gitignore
+.git/
+.theme-check.yml

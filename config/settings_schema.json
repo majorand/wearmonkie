@@ -1,1 +1,51 @@
-[]
+[
+  {
+    "name": "theme_info",
+    "theme_name": "WearMonkie",
+    "theme_version": "1.0.0",
+    "theme_author": "WearMonkie",
+    "theme_documentation_url": "https://github.com/majorand/wearmonkie",
+    "theme_support_url": "https://github.com/majorand/wearmonkie/issues"
+  },
+  {
+    "name": "Logo & branding",
+    "settings": [
+      { "type": "image_picker", "id": "logo", "label": "Logo image", "info": "Falls back to the shop name if empty." },
+      { "type": "image_picker", "id": "footer_logo", "label": "Footer logo" },
+      { "type": "image_picker", "id": "favicon", "label": "Favicon", "info": "32 x 32px recommended." }
+    ]
+  },
+  {
+    "name": "Header",
+    "settings": [
+      { "type": "link_list", "id": "menu", "label": "Main menu", "default": "main-menu" },
+      { "type": "checkbox", "id": "show_search", "label": "Show search icon", "default": true }
+    ]
+  },
+  {
+    "name": "Announcement bar",
+    "settings": [
+      { "type": "checkbox", "id": "announcement_bar_enabled", "label": "Show announcement bar", "default": true },
+      { "type": "richtext", "id": "announcement_text", "label": "Announcement text", "default": "<p>Free shipping on orders over $75</p>" }
+    ]
+  },
+  {
+    "name": "Footer",
+    "settings": [
+      { "type": "text", "id": "footer_tagline", "label": "Tagline", "default": "Effortless style for every woman." },
+      { "type": "header", "content": "Footer menus" },
+      { "type": "paragraph", "content": "Create link lists with the handles footer-menu-1, footer-menu-2 and footer-menu-3 in Navigation, then set their headings below." },
+      { "type": "text", "id": "footer_menu_1_heading", "label": "Footer menu 1 heading", "default": "Shop" },
+      { "type": "text", "id": "footer_menu_2_heading", "label": "Footer menu 2 heading", "default": "Help" },
+      { "type": "text", "id": "footer_menu_3_heading", "label": "Footer menu 3 heading", "default": "Company" }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      { "type": "url", "id": "social_instagram_link", "label": "Instagram" },
+      { "type": "url", "id": "social_tiktok_link", "label": "TikTok" },
+      { "type": "url", "id": "social_pinterest_link", "label": "Pinterest" }
+    ]
+  }
+]

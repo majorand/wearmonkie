@@ -1,0 +1,42 @@
+<div class="page-header">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="{{ routes.root_url }}">{{ 'general.breadcrumbs.home' | t | default: 'Home' }}</a> /
+      <span aria-current="page">{{ page.title }}</span>
+    </nav>
+    <h1 class="page-header__title">{{ page.title }}</h1>
+  </div>
+</div>
+
+<div class="page-content section container">
+  <div class="rte">
+    {{ page.content }}
+  </div>
+</div>
+
+{% stylesheet %}
+.page-content { max-width: 760px; }
+.rte { font-size: 16px; line-height: 1.8; color: var(--color-text); }
+.rte > * + * { margin-top: 1.1rem; }
+.rte h2 { font-family: var(--font-serif); font-size: 1.8rem; font-weight: 700; color: var(--color-dark); margin-top: 2rem; }
+.rte h3 { font-family: var(--font-serif); font-size: 1.4rem; font-weight: 600; color: var(--color-dark); margin-top: 1.5rem; }
+.rte a { color: var(--color-accent-dark); text-decoration: underline; }
+.rte ul, .rte ol { padding-left: 1.5rem; }
+.rte ul { list-style: disc; }
+.rte ol { list-style: decimal; }
+.rte li + li { margin-top: .4rem; }
+.rte img { border-radius: var(--radius-lg); margin: 1.5rem 0; }
+.rte blockquote {
+  border-left: 3px solid var(--color-accent); padding-left: 1.25rem;
+  font-family: var(--font-serif); font-size: 1.25rem; color: var(--color-dark);
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Page",
+  "tag": "section",
+  "settings": [],
+  "presets": [{ "name": "Page" }]
+}
+{% endschema %}

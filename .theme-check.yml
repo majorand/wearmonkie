@@ -1,0 +1,19 @@
+# Shopify Theme Check configuration
+# Run with: shopify theme check
+root: "."
+
+# Files kept for reference that are not part of the Shopify theme
+ignore:
+  - index.html
+  - cart.html
+  - collections.html
+  - product.html
+  - main.js
+  - styles.css
+
+# Sections embed their own CSS/JS via {% stylesheet %}/{% javascript %},
+# so the per-asset size checks are not meaningful here.
+AssetSizeJavaScript:
+  enabled: false
+AssetSizeCSS:
+  enabled: false

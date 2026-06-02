@@ -1,0 +1,63 @@
+<div class="page-header">
+  <div class="container">
+    <h1 class="page-header__title">{{ 'customer.account.title' | t | default: 'My Account' }}</h1>
+    <p class="page-header__sub">{{ 'customer.account.welcome' | t | default: 'Welcome back' }}, {{ customer.first_name | default: customer.email }}</p>
+  </div>
+</div>
+
+<div class="customer-account section container">
+  <div class="customer-account__main">
+    <h2 class="customer-account__heading">{{ 'customer.orders.title' | t | default: 'Order History' }}</h2>
+    {%- paginate customer.orders by 10 -%}
+      {%- if customer.orders.size > 0 -%}
+        <div class="orders-table-wrap">
+          <table class="orders-table">
+            <thead>
+              <tr>
+                <th>{{ 'customer.orders.order_number' | t | default: 'Order' }}</th>
+                <th>{{ 'customer.orders.date' | t | default: 'Date' }}</th>
+                <th>{{ 'customer.orders.payment_status' | t | default: 'Payment' }}</th>
+                <th>{{ 'customer.orders.fulfillment_status' | t | default: 'Fulfillment' }}</th>
+                <th>{{ 'customer.orders.total' | t | default: 'Total' }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {%- for order in customer.orders -%}
+                <tr>
+                  <td><a href="{{ order.customer_url }}" class="customer__link">{{ order.name }}</a></td>
+                  <td>{{ order.created_at | date: '%b %-d, %Y' }}</td>
+                  <td>{{ order.financial_status_label }}</td>
+                  <td>{{ order.fulfillment_status_label }}</td>
+                  <td>{{ order.total_net_amount | money }}</td>
+                </tr>
+              {%- endfor -%}
+            </tbody>
+          </table>
+        </div>
+
+        {%- if paginate.pages > 1 -%}
+          <nav class="pagination" aria-label="Pagination">
+            {%- for part in paginate.parts -%}
+              {%- if part.is_link -%}<a href="{{ part.url }}" class="pagination__btn">{{ part.title }}</a>
+              {%- else -%}<span class="pagination__btn pagination__btn--active">{{ part.title }}</span>{%- endif -%}
+            {%- endfor -%}
+          </nav>
+        {%- endif -%}
+      {%- else -%}
+        <p class="customer__intro">{{ 'customer.orders.none' | t | default: "You haven't placed any orders yet." }}</p>
+        <a href="{{ routes.all_products_collection_url }}" class="btn btn--primary">{{ 'customer.orders.start_shopping' | t | default: 'Start shopping' }}</a>
+      {%- endif -%}
+    {%- endpaginate -%}
+  </div>
+
+  <aside class="customer-account__side">
+    <h2 class="customer-account__heading">{{ 'customer.account.details' | t | default: 'Account Details' }}</h2>
+    <p class="customer-account__detail">{{ customer.name }}</p>
+    <p class="customer-account__detail">{{ customer.email }}</p>
+    {%- if customer.default_address -%}
+      <div class="customer-account__address">{{ customer.default_address | format_address }}</div>
+    {%- endif -%}
+    <a href="{{ routes.account_addresses_url }}" class="btn btn--outline btn--sm">{{ 'customer.account.view_addresses' | t | default: 'View Addresses' }} ({{ customer.addresses_count }})</a>
+    <a href="{{ routes.account_logout_url }}" class="customer__link customer-account__logout">{{ 'customer.account.log_out' | t | default: 'Log out' }}</a>
+  </aside>
+</div>

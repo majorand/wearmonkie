@@ -1,0 +1,28 @@
+<section class="notfound section container">
+  <p class="notfound__code">404</p>
+  <h1 class="notfound__title">{{ 'sections.404.title' | t | default: 'This page wandered off' }}</h1>
+  <p class="notfound__text">{{ 'sections.404.subtext' | t | default: "The page you're looking for doesn't exist or has moved. Let's get you back to the good stuff." }}</p>
+  <div class="notfound__ctas">
+    <a href="{{ routes.root_url }}" class="btn btn--primary btn--lg">{{ 'sections.404.home' | t | default: 'Back to Home' }}</a>
+    <a href="{{ routes.all_products_collection_url }}" class="btn btn--outline btn--lg">{{ 'sections.404.shop' | t | default: 'Shop All' }}</a>
+  </div>
+</section>
+
+{% stylesheet %}
+.notfound { text-align: center; max-width: 560px; padding-top: 5rem; padding-bottom: 6rem; }
+.notfound__code {
+  font-family: var(--font-serif); font-size: clamp(5rem, 16vw, 9rem); font-weight: 700;
+  line-height: 1; color: var(--color-accent); opacity: .55; margin-bottom: .5rem;
+}
+.notfound__title { font-family: var(--font-serif); font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 700; color: var(--color-dark); margin-bottom: .85rem; }
+.notfound__text { font-size: 16px; color: var(--color-text-muted); line-height: 1.7; margin-bottom: 2rem; }
+.notfound__ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "404",
+  "tag": "section",
+  "settings": []
+}
+{% endschema %}

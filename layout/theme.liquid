@@ -55,7 +55,7 @@
       <li id="a11y-new-window-message">{{ 'accessibility.link_messages.new_window' | t }}</li>
     </ul>
 
-    {{ 'wearmonkie.js' | asset_url | script_tag }}
+    <script src="{{ 'wearmonkie.js' | asset_url }}" defer></script>
 
   </body>
 </html>

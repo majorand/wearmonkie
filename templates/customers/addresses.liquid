@@ -1,0 +1,81 @@
+<div class="page-header">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="{{ routes.account_url }}">{{ 'customer.account.title' | t | default: 'My Account' }}</a> /
+      <span aria-current="page">{{ 'customer.addresses.title' | t | default: 'Addresses' }}</span>
+    </nav>
+    <h1 class="page-header__title">{{ 'customer.addresses.title' | t | default: 'Your Addresses' }}</h1>
+  </div>
+</div>
+
+<div class="customer section container" data-addresses>
+  <div class="customer__panel">
+    <h2 class="customer-account__heading">{{ 'customer.addresses.add_new' | t | default: 'Add a new address' }}</h2>
+    {%- form 'customer_address', customer.new_address -%}
+      <div class="customer__row">
+        <div>
+          <label class="customer__label" for="address_first_name_new">{{ 'customer.addresses.first_name' | t | default: 'First name' }}</label>
+          <input type="text" id="address_first_name_new" name="address[first_name]" class="customer__input" value="{{ form.first_name }}" autocomplete="given-name">
+        </div>
+        <div>
+          <label class="customer__label" for="address_last_name_new">{{ 'customer.addresses.last_name' | t | default: 'Last name' }}</label>
+          <input type="text" id="address_last_name_new" name="address[last_name]" class="customer__input" value="{{ form.last_name }}" autocomplete="family-name">
+        </div>
+      </div>
+      <label class="customer__label" for="address_company_new">{{ 'customer.addresses.company' | t | default: 'Company' }}</label>
+      <input type="text" id="address_company_new" name="address[company]" class="customer__input" value="{{ form.company }}" autocomplete="organization">
+      <label class="customer__label" for="address_address1_new">{{ 'customer.addresses.address1' | t | default: 'Address' }}</label>
+      <input type="text" id="address_address1_new" name="address[address1]" class="customer__input" value="{{ form.address1 }}" autocomplete="address-line1">
+      <label class="customer__label" for="address_address2_new">{{ 'customer.addresses.address2' | t | default: 'Apartment, suite, etc.' }}</label>
+      <input type="text" id="address_address2_new" name="address[address2]" class="customer__input" value="{{ form.address2 }}" autocomplete="address-line2">
+      <div class="customer__row">
+        <div>
+          <label class="customer__label" for="address_city_new">{{ 'customer.addresses.city' | t | default: 'City' }}</label>
+          <input type="text" id="address_city_new" name="address[city]" class="customer__input" value="{{ form.city }}" autocomplete="address-level2">
+        </div>
+        <div>
+          <label class="customer__label" for="address_zip_new">{{ 'customer.addresses.zip' | t | default: 'Postal/ZIP code' }}</label>
+          <input type="text" id="address_zip_new" name="address[zip]" class="customer__input" value="{{ form.zip }}" autocomplete="postal-code">
+        </div>
+      </div>
+      <div class="customer__row">
+        <div>
+          <label class="customer__label" for="address_country_new">{{ 'customer.addresses.country' | t | default: 'Country/Region' }}</label>
+          <select id="address_country_new" name="address[country]" class="customer__input" data-default="{{ form.country }}">{{ country_option_tags }}</select>
+        </div>
+        <div>
+          <label class="customer__label" for="address_province_new">{{ 'customer.addresses.province' | t | default: 'State/Province' }}</label>
+          <select id="address_province_new" name="address[province]" class="customer__input" data-default="{{ form.province }}"></select>
+        </div>
+      </div>
+      <label class="customer__label" for="address_phone_new">{{ 'customer.addresses.phone' | t | default: 'Phone' }}</label>
+      <input type="tel" id="address_phone_new" name="address[phone]" class="customer__input" value="{{ form.phone }}" autocomplete="tel">
+      <label class="customer__checkbox"><input type="checkbox" name="address[default]" value="1"> {{ 'customer.addresses.set_default' | t | default: 'Set as default address' }}</label>
+      <button type="submit" class="btn btn--primary btn--lg customer__submit">{{ 'customer.addresses.add' | t | default: 'Add address' }}</button>
+    {%- endform -%}
+  </div>
+
+  <div class="customer__panel">
+    <h2 class="customer-account__heading">{{ 'customer.addresses.saved' | t | default: 'Saved addresses' }} ({{ customer.addresses_count }})</h2>
+    {%- for address in customer.addresses -%}
+      <div class="address-card">
+        {%- if address == customer.default_address -%}<span class="address-card__default">{{ 'customer.addresses.default' | t | default: 'Default' }}</span>{%- endif -%}
+        <div class="customer-account__address">{{ address | format_address }}</div>
+        <div class="address-card__actions">
+          <a href="{{ routes.account_addresses_url }}#edit-{{ address.id }}" class="customer__link">{{ 'customer.addresses.edit' | t | default: 'Edit' }}</a>
+          {%- form 'customer_address', address, method: 'delete' -%}
+            <button type="submit" class="customer__link customer__link--danger" onclick="return confirm('{{ 'customer.addresses.delete_confirm' | t | default: 'Delete this address?' }}');">{{ 'customer.addresses.delete' | t | default: 'Delete' }}</button>
+          {%- endform -%}
+        </div>
+      </div>
+    {%- else -%}
+      <p class="customer__intro">{{ 'customer.addresses.none' | t | default: 'You have no saved addresses.' }}</p>
+    {%- endfor -%}
+  </div>
+</div>
+
+<script>
+  if (Shopify && Shopify.CountryProvinceSelector) {
+    new Shopify.CountryProvinceSelector('address_country_new', 'address_province_new', { hideElement: 'address_province_container_new' });
+  }
+</script>

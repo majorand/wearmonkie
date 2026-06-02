@@ -1,0 +1,187 @@
+{%- liquid
+  assign overlay = section.settings.overlay_opacity | divided_by: 100.0
+  assign align = section.settings.text_align
+  assign hero_alt = section.settings.image.alt | default: section.settings.heading | strip_html
+-%}
+
+<section
+  class="ed-hero ed-hero--{{ align }}"
+  aria-label="{{ section.settings.heading | strip_html | escape }}"
+  style="--ed-hero-min: {{ section.settings.height }}vh;"
+>
+  <div class="ed-hero__media">
+    {%- if section.settings.image != blank -%}
+      {{
+        section.settings.image
+        | image_url: width: 2000
+        | image_tag:
+          loading: 'eager',
+          fetchpriority: 'high',
+          class: 'ed-hero__img',
+          alt: hero_alt,
+          widths: '750, 1100, 1500, 1780, 2000, 2400',
+          sizes: '100vw'
+      }}
+    {%- else -%}
+      {{ 'lifestyle-1' | placeholder_svg_tag: 'ed-hero__img ed-hero__img--placeholder' }}
+    {%- endif -%}
+    <div class="ed-hero__scrim" style="opacity:{{ overlay }};"></div>
+  </div>
+
+  <div class="ed-hero__inner container">
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="ed-hero__eyebrow reveal" style="--d:0ms;">
+        <span class="ed-hero__eyebrow-line" aria-hidden="true"></span>
+        {{ section.settings.eyebrow | escape }}
+      </p>
+    {%- endif -%}
+
+    {%- if section.settings.heading != blank -%}
+      <h1 class="ed-hero__title">
+        {%- assign words = section.settings.heading | strip_html | split: ' ' -%}
+        {%- for word in words -%}
+          <span class="ed-hero__word reveal" style="--d:{{ forloop.index0 | times: 90 | plus: 120 }}ms;">{{ word }}</span>{% unless forloop.last %} {% endunless %}
+        {%- endfor -%}
+      </h1>
+    {%- endif -%}
+
+    {%- if section.settings.subheading != blank -%}
+      <p class="ed-hero__sub reveal" style="--d:{{ words.size | times: 90 | plus: 260 }}ms;">{{ section.settings.subheading | escape }}</p>
+    {%- endif -%}
+
+    <div class="ed-hero__ctas reveal" style="--d:{{ words.size | times: 90 | plus: 400 }}ms;">
+      {%- if section.settings.button_label != blank -%}
+        <a href="{{ section.settings.button_url | default: '#' }}" class="btn btn--primary btn--lg ed-hero__cta">
+          {{ section.settings.button_label | escape }}
+        </a>
+      {%- endif -%}
+      {%- if section.settings.secondary_button_label != blank -%}
+        <a href="{{ section.settings.secondary_button_url | default: '#' }}" class="btn btn--ghost btn--lg">
+          {{ section.settings.secondary_button_label | escape }}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+
+  {%- if section.settings.show_scroll_cue -%}
+    <div class="ed-hero__scroll" aria-hidden="true">
+      <span class="ed-hero__scroll-label">{{ section.settings.scroll_label | escape }}</span>
+      <span class="ed-hero__scroll-line"></span>
+    </div>
+  {%- endif -%}
+</section>
+
+{% stylesheet %}
+.ed-hero {
+  position: relative;
+  min-height: var(--ed-hero-min, 92vh);
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  isolation: isolate;
+}
+.ed-hero--center { align-items: center; text-align: center; }
+.ed-hero__media { position: absolute; inset: 0; z-index: -1; }
+.ed-hero__img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center;
+  transform: scale(1.06);
+  animation: edHeroZoom 9s ease-out forwards;
+}
+.ed-hero__scrim {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(to top, rgba(15,12,14,.72) 0%, rgba(15,12,14,.18) 45%, rgba(15,12,14,.05) 100%),
+    linear-gradient(105deg, rgba(15,12,14,.45) 0%, transparent 60%);
+}
+.ed-hero__inner {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  max-width: 720px;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+.ed-hero--center .ed-hero__inner { margin-inline: auto; }
+.ed-hero__eyebrow {
+  display: inline-flex; align-items: center; gap: .9rem;
+  font-size: 12px; font-weight: 600; letter-spacing: .22em;
+  text-transform: uppercase; opacity: .92; margin-bottom: 1.1rem;
+}
+.ed-hero__eyebrow-line { width: 38px; height: 1px; background: currentColor; opacity: .7; display: inline-block; }
+.ed-hero--center .ed-hero__eyebrow { justify-content: center; }
+.ed-hero__title {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 7.5vw, 6rem);
+  font-weight: 700; line-height: .98; letter-spacing: -.015em;
+  margin-bottom: 1.4rem; text-wrap: balance;
+}
+.ed-hero__word { display: inline-block; }
+.ed-hero__sub {
+  font-size: clamp(1rem, 1.4vw, 1.18rem);
+  line-height: 1.7; opacity: .9; max-width: 46ch; margin-bottom: 2.25rem;
+}
+.ed-hero--center .ed-hero__sub { margin-inline: auto; }
+.ed-hero__ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+.ed-hero--center .ed-hero__ctas { justify-content: center; }
+.ed-hero__cta { box-shadow: 0 10px 30px rgba(0,0,0,.28); }
+
+.ed-hero__scroll {
+  position: absolute; left: 50%; bottom: 1.75rem; transform: translateX(-50%);
+  z-index: 1; display: flex; flex-direction: column; align-items: center; gap: .6rem;
+  color: #fff;
+}
+.ed-hero__scroll-label {
+  font-size: 10px; letter-spacing: .28em; text-transform: uppercase; opacity: .8;
+}
+.ed-hero__scroll-line {
+  width: 1px; height: 46px; background: linear-gradient(#fff, transparent);
+  position: relative; overflow: hidden;
+}
+.ed-hero__scroll-line::after {
+  content: ''; position: absolute; top: -50%; left: 0; width: 100%; height: 50%;
+  background: #fff; animation: edHeroScroll 1.8s ease-in-out infinite;
+}
+
+/* entrance */
+.reveal { opacity: 0; transform: translateY(22px); animation: edHeroReveal .85s cubic-bezier(.22,.61,.36,1) forwards; animation-delay: var(--d, 0ms); }
+
+@keyframes edHeroReveal { to { opacity: 1; transform: none; } }
+@keyframes edHeroZoom { to { transform: scale(1); } }
+@keyframes edHeroScroll { 0% { transform: translateY(0); } 100% { transform: translateY(200%); } }
+
+@media (max-width: 768px) {
+  .ed-hero { min-height: 78vh; }
+  .ed-hero__inner { padding-top: 3.5rem; padding-bottom: 4rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ed-hero__img { animation: none; transform: none; }
+  .reveal { opacity: 1; transform: none; animation: none; }
+  .ed-hero__scroll-line::after { animation: none; }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Editorial Hero",
+  "tag": "section",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Background image" },
+    { "type": "range", "id": "overlay_opacity", "min": 0, "max": 90, "step": 5, "unit": "%", "label": "Overlay strength", "default": 55 },
+    { "type": "range", "id": "height", "min": 60, "max": 100, "step": 2, "unit": "vh", "label": "Section height", "default": 92 },
+    { "type": "select", "id": "text_align", "label": "Text alignment", "options": [
+      { "value": "left", "label": "Left" },
+      { "value": "center", "label": "Center" }
+    ], "default": "left" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Fall / Winter 2026" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Quiet Luxury, Loud Confidence" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "Sculpted silhouettes and considered fabrics for the woman who dresses for herself first." },
+    { "type": "text", "id": "button_label", "label": "Primary button", "default": "Shop the Collection" },
+    { "type": "url", "id": "button_url", "label": "Primary button link" },
+    { "type": "text", "id": "secondary_button_label", "label": "Secondary button", "default": "View Lookbook" },
+    { "type": "url", "id": "secondary_button_url", "label": "Secondary button link" },
+    { "type": "checkbox", "id": "show_scroll_cue", "label": "Show scroll cue", "default": true },
+    { "type": "text", "id": "scroll_label", "label": "Scroll cue label", "default": "Scroll" }
+  ],
+  "presets": [{ "name": "Editorial Hero" }]
+}
+{% endschema %}

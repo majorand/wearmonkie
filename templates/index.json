@@ -1,25 +1,46 @@
 {
   "sections": {
     "hero": {
-      "type": "hero-banner",
+      "type": "editorial-hero",
       "settings": {
-        "heading": "Dress for the Life You Want",
-        "subheading": "Effortless styles made for real women — from morning coffee to midnight magic.",
-        "eyebrow": "Summer 2025 Collection",
-        "button_label": "Shop Now",
+        "eyebrow": "Fall / Winter 2026",
+        "heading": "Quiet Luxury, Loud Confidence",
+        "subheading": "Sculpted silhouettes and considered fabrics for the woman who dresses for herself first.",
+        "button_label": "Shop the Collection",
         "button_url": "/collections/all",
-        "secondary_button_label": "Explore Looks",
-        "secondary_button_url": "#featured",
-        "overlay_opacity": 50
+        "secondary_button_label": "View Lookbook",
+        "secondary_button_url": "#shopify-section-lookbook",
+        "overlay_opacity": 55,
+        "height": 92,
+        "text_align": "left",
+        "show_scroll_cue": true,
+        "scroll_label": "Scroll"
       }
+    },
+    "marquee": {
+      "type": "marquee",
+      "blocks": {
+        "m1": { "type": "phrase", "settings": { "text": "Free Shipping Over $75" } },
+        "m2": { "type": "phrase", "settings": { "text": "Inclusive Sizing XS–3X" } },
+        "m3": { "type": "phrase", "settings": { "text": "Sustainably Made" } },
+        "m4": { "type": "phrase", "settings": { "text": "30-Day Easy Returns" } },
+        "m5": { "type": "phrase", "settings": { "text": "New Drops Every Friday" } }
+      },
+      "block_order": ["m1", "m2", "m3", "m4", "m5"],
+      "settings": { "speed": 28, "separator": "✦", "invert": false }
     },
     "categories": {
       "type": "category-tiles",
-      "settings": {
-        "heading": "Shop by Category"
-      }
+      "settings": { "heading": "Shop by Category" },
+      "blocks": {
+        "c1": { "type": "tile", "settings": { "label": "Dresses", "url": "/collections/dresses" } },
+        "c2": { "type": "tile", "settings": { "label": "Tops", "url": "/collections/tops" } },
+        "c3": { "type": "tile", "settings": { "label": "Bottoms", "url": "/collections/bottoms" } },
+        "c4": { "type": "tile", "settings": { "label": "Outerwear", "url": "/collections/outerwear" } }
+      },
+      "block_order": ["c1", "c2", "c3", "c4"]
     },
-    "featured-products": {
+    "new-arrivals": {
       "type": "featured-collection",
       "settings": {
         "heading": "New Arrivals",
@@ -27,14 +48,49 @@
         "products_to_show": 4
       }
     },
-    "editorial": {
-      "type": "editorial-banner",
+    "showcase": {
+      "type": "collection-showcase",
       "settings": {
-        "eyebrow": "The Edit",
-        "heading": "Built for the Modern Woman",
-        "body": "Every piece in our collection is designed with intention — comfortable enough for all-day wear, polished enough for any occasion. Sustainable fabrics, inclusive sizing XS–3X.",
-        "button_label": "Explore the Collection",
-        "button_url": "/collections/all"
+        "reverse": false,
+        "badge": "New In",
+        "eyebrow": "The Capsule",
+        "heading": "The Everyday Tailoring Edit",
+        "body": "Sharp, season-less pieces engineered to mix, match and outlast every trend cycle.",
+        "button_label": "Shop the Edit",
+        "button_url": "/collections/all",
+        "collection": "new-arrivals"
+      },
+      "blocks": {
+        "f1": { "type": "feature", "settings": { "text": "Wrinkle-resistant stretch weave" } },
+        "f2": { "type": "feature", "settings": { "text": "Hidden comfort waistband" } },
+        "f3": { "type": "feature", "settings": { "text": "Designed for sizes XS–3X" } }
+      },
+      "block_order": ["f1", "f2", "f3"]
+    },
+    "lookbook": {
+      "type": "lookbook",
+      "settings": {
+        "eyebrow": "Shop the Look",
+        "heading": "One Outfit, Endless Ways",
+        "text": "Tap the markers to shop each piece styled straight from our latest campaign."
+      },
+      "blocks": {
+        "h1": { "type": "hotspot", "settings": { "x": 38, "y": 30, "label": "Silk Wrap Blouse", "price": "$98" } },
+        "h2": { "type": "hotspot", "settings": { "x": 47, "y": 66, "label": "Tailored Wide-Leg Trouser", "price": "$128" } },
+        "h3": { "type": "hotspot", "settings": { "x": 63, "y": 48, "label": "Leather Crossbody", "price": "$156" } }
+      },
+      "block_order": ["h1", "h2", "h3"]
+    },
+    "countdown": {
+      "type": "countdown-banner",
+      "settings": {
+        "eyebrow": "Limited Time",
+        "heading": "The Summer Edit — 25% Off",
+        "subheading": "Our most-loved silhouettes, discounted for a few days only. When they're gone, they're gone.",
+        "deadline": "2026-07-01 23:59",
+        "button_label": "Shop the Sale",
+        "button_url": "/collections/sale",
+        "use_image": false
       }
     },
     "best-sellers": {
@@ -45,9 +101,44 @@
         "products_to_show": 4
       }
     },
-    "trust-badges": {
-      "type": "trust-badges",
-      "settings": {}
+    "value-props": {
+      "type": "value-props",
+      "settings": {
+        "eyebrow": "The WearMonkie Promise",
+        "heading": "Designed Around Real Life"
+      },
+      "blocks": {
+        "v1": { "type": "prop", "settings": { "icon": "leaf", "heading": "Sustainably Sourced", "text": "Responsibly made fabrics, lower-impact production." } },
+        "v2": { "type": "prop", "settings": { "icon": "hanger", "heading": "Inclusive Sizing", "text": "Thoughtful fits from XS to 3X — for every body." } },
+        "v3": { "type": "prop", "settings": { "icon": "truck", "heading": "Fast, Free Shipping", "text": "Complimentary delivery on every order over $75." } },
+        "v4": { "type": "prop", "settings": { "icon": "heart", "heading": "Loved by 50k+", "text": "A community of women who dress for themselves." } }
+      },
+      "block_order": ["v1", "v2", "v3", "v4"]
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "settings": {
+        "eyebrow": "Worn & Loved",
+        "heading": "What She's Saying",
+        "rating_text": "4.9 / 5 from 12,000+ reviews"
+      },
+      "blocks": {
+        "t1": { "type": "testimonial", "settings": { "quote": "The fit is unreal — finally a brand that gets curves right. I've ordered four more pieces since.", "name": "Maya R.", "detail": "Verified Buyer · Size L" } },
+        "t2": { "type": "testimonial", "settings": { "quote": "Quality you can feel the second you open the box. These have become my everyday go-tos.", "name": "Priya S.", "detail": "Verified Buyer · Size M" } },
+        "t3": { "type": "testimonial", "settings": { "quote": "Sustainable, size-inclusive, and genuinely beautiful. WearMonkie is my whole closet now.", "name": "Dana L.", "detail": "Verified Buyer · Size XL" } },
+        "t4": { "type": "testimonial", "settings": { "quote": "I wore the wrap dress from a 9am meeting to a dinner date — zero outfit change needed.", "name": "Carmen V.", "detail": "Verified Buyer · Size S" } }
+      },
+      "block_order": ["t1", "t2", "t3", "t4"]
+    },
+    "editorial": {
+      "type": "editorial-banner",
+      "settings": {
+        "eyebrow": "The Edit",
+        "heading": "Built for the Modern Woman",
+        "body": "Every piece in our collection is designed with intention — comfortable enough for all-day wear, polished enough for any occasion. Sustainable fabrics, inclusive sizing XS–3X.",
+        "button_label": "Explore the Collection",
+        "button_url": "/collections/all"
+      }
     },
     "instagram": {
       "type": "instagram-grid",
@@ -66,11 +157,16 @@
   },
   "order": [
     "hero",
+    "marquee",
     "categories",
-    "featured-products",
-    "editorial",
+    "new-arrivals",
+    "showcase",
+    "lookbook",
+    "countdown",
     "best-sellers",
-    "trust-badges",
+    "value-props",
+    "testimonials",
+    "editorial",
     "instagram",
     "newsletter"
   ]
