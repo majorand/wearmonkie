@@ -1,6 +1,329 @@
+{% doc %}
+  @prompt
+    Add a customizable background to the Password page section. The background should support both a solid color option and an image upload option, with controls accessible in the theme editor sidebar. The background should cover the full page and look visually appealing for a coming soon/password page., it is not the background of the password block it is the background of the page can you change it to the background of the password block behind the word MONKIE
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-password-background-{{ ai_gen_id }} {
+    position: relative;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: {{ block.settings.padding_vertical }}px {{ block.settings.padding_horizontal }}px;
+    border-radius: {{ block.settings.border_radius }}px;
+    overflow: hidden;
+    display: block;
+  }
+
+  .ai-password-background__image-wrapper-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .ai-password-background__image-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: {{ block.settings.image_fit }};
+    object-position: {{ block.settings.image_position }};
+  }
+
+  .ai-password-background__color-layer-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: {{ block.settings.background_color }};
+    opacity: {{ block.settings.overlay_opacity }};
+    z-index: 1;
+  }
+
+  .ai-password-background__gradient-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  {% if block.settings.gradient_enabled %}
+    .ai-password-background__gradient-{{ ai_gen_id }} {
+      background: linear-gradient(
+        {{ block.settings.gradient_direction }}deg,
+        {{ block.settings.gradient_color_1 }} 0%,
+        {{ block.settings.gradient_color_2 }} 100%
+      );
+      opacity: {{ block.settings.gradient_opacity }};
+    }
+  {% endif %}
+
+  .ai-password-background__content-{{ ai_gen_id }} {
+    position: relative;
+    z-index: 3;
+    min-height: {{ block.settings.min_height }}px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-password-background-{{ ai_gen_id }} {
+      width: 100%;
+      padding: {{ block.settings.padding_vertical | times: 0.7 }}px {{ block.settings.padding_horizontal | times: 0.7 }}px;
+    }
+
+    .ai-password-background__content-{{ ai_gen_id }} {
+      min-height: {{ block.settings.min_height | times: 0.7 }}px;
+    }
+  }
+{% endstyle %}
+
+<password-background-{{ ai_gen_id }}
+  class="ai-password-background-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-password-background__image-wrapper-{{ ai_gen_id }}">
+    {% if block.settings.background_image %}
+      <img
+        src="{{ block.settings.background_image | image_url: width: 1600 }}"
+        srcset="
+          {{ block.settings.background_image | image_url: width: 600 }} 600w,
+          {{ block.settings.background_image | image_url: width: 1000 }} 1000w,
+          {{ block.settings.background_image | image_url: width: 1600 }} 1600w
+        "
+        sizes="(min-width: 750px) {{ block.settings.desktop_width_percent }}vw, 100vw"
+        alt="{{ block.settings.background_image.alt | escape }}"
+        class="ai-password-background__image-{{ ai_gen_id }}"
+        loading="lazy"
+        width="{{ block.settings.background_image.width }}"
+        height="{{ block.settings.background_image.height }}"
+      >
+    {% endif %}
+
+    <div class="ai-password-background__color-layer-{{ ai_gen_id }}"></div>
+
+    {% if block.settings.gradient_enabled %}
+      <div class="ai-password-background__gradient-{{ ai_gen_id }}"></div>
+    {% endif %}
+  </div>
+
+  <div class="ai-password-background__content-{{ ai_gen_id }}">
+    {{ block.settings.content }}
+  </div>
+</password-background-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class PasswordBackground{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+    }
+
+    customElements.define('password-background-{{ ai_gen_id }}', PasswordBackground{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Password block background",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content",
+      "default": "<h1>MONKIE</h1>",
+      "info": "Add your password page content here"
+    },
+    {
+      "type": "header",
+      "content": "Background image"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Image fit",
+      "options": [
+        {
+          "value": "cover",
+          "label": "Cover"
+        },
+        {
+          "value": "contain",
+          "label": "Contain"
+        },
+        {
+          "value": "fill",
+          "label": "Fill"
+        }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position",
+      "options": [
+        {
+          "value": "center center",
+          "label": "Center"
+        },
+        {
+          "value": "top center",
+          "label": "Top"
+        },
+        {
+          "value": "bottom center",
+          "label": "Bottom"
+        },
+        {
+          "value": "left center",
+          "label": "Left"
+        },
+        {
+          "value": "right center",
+          "label": "Right"
+        }
+      ],
+      "default": "center center"
+    },
+    {
+      "type": "header",
+      "content": "Background color"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Color overlay opacity",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "default": 0,
+      "info": "Overlays color on top of image"
+    },
+    {
+      "type": "header",
+      "content": "Gradient overlay"
+    },
+    {
+      "type": "checkbox",
+      "id": "gradient_enabled",
+      "label": "Enable gradient overlay",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_1",
+      "label": "Gradient start color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_2",
+      "label": "Gradient end color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "gradient_direction",
+      "label": "Gradient angle",
+      "min": 0,
+      "max": 360,
+      "step": 45,
+      "unit": "deg",
+      "default": 180
+    },
+    {
+      "type": "range",
+      "id": "gradient_opacity",
+      "label": "Gradient opacity",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "default": 0.5
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "min_height",
+      "label": "Minimum height",
+      "min": 100,
+      "max": 600,
+      "step": 50,
+      "unit": "px",
+      "default": 300
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical",
+      "label": "Vertical padding",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "label": "Horizontal padding",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Password block background"
+    }
+  ]
+}
 {% endschema %}
