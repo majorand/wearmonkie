@@ -1,0 +1,247 @@
+{% doc %}
+  @prompt
+    Add a customizable background to the Password page section. The background should support both a solid color option and an image upload option, with controls accessible in the theme editor sidebar. The background should cover the full page and look visually appealing for a coming soon/password page.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-password-background-{{ ai_gen_id }} {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    display: block;
+  }
+
+  .ai-password-background__overlay-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: {{ block.settings.background_color }};
+    opacity: {{ block.settings.overlay_opacity }};
+    z-index: 1;
+  }
+
+  .ai-password-background__image-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: {{ block.settings.image_fit }};
+    object-position: {{ block.settings.image_position }};
+    z-index: 0;
+  }
+
+  .ai-password-background__gradient-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  {% if block.settings.gradient_enabled %}
+    .ai-password-background__gradient-{{ ai_gen_id }} {
+      background: linear-gradient(
+        {{ block.settings.gradient_direction }}deg,
+        {{ block.settings.gradient_color_1 }} 0%,
+        {{ block.settings.gradient_color_2 }} 100%
+      );
+      opacity: {{ block.settings.gradient_opacity }};
+    }
+  {% endif %}
+{% endstyle %}
+
+<password-background-{{ ai_gen_id }}
+  class="ai-password-background-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  {% if block.settings.background_image %}
+    <img
+      src="{{ block.settings.background_image | image_url: width: 2400 }}"
+      srcset="
+        {{ block.settings.background_image | image_url: width: 800 }} 800w,
+        {{ block.settings.background_image | image_url: width: 1200 }} 1200w,
+        {{ block.settings.background_image | image_url: width: 1600 }} 1600w,
+        {{ block.settings.background_image | image_url: width: 2400 }} 2400w
+      "
+      sizes="100vw"
+      alt="{{ block.settings.background_image.alt | escape }}"
+      class="ai-password-background__image-{{ ai_gen_id }}"
+      loading="eager"
+      width="{{ block.settings.background_image.width }}"
+      height="{{ block.settings.background_image.height }}"
+    >
+  {% endif %}
+
+  <div class="ai-password-background__overlay-{{ ai_gen_id }}"></div>
+
+  {% if block.settings.gradient_enabled %}
+    <div class="ai-password-background__gradient-{{ ai_gen_id }}"></div>
+  {% endif %}
+</password-background-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class PasswordBackground{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.adjustBodyStyles();
+      }
+
+      adjustBodyStyles() {
+        if (document.body) {
+          document.body.style.position = 'relative';
+          document.body.style.minHeight = '100vh';
+        }
+      }
+    }
+
+    customElements.define('password-background-{{ ai_gen_id }}', PasswordBackground{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Password page background",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background image"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image",
+      "info": "Recommended: 2400 x 1600px or larger"
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Image fit",
+      "options": [
+        {
+          "value": "cover",
+          "label": "Cover"
+        },
+        {
+          "value": "contain",
+          "label": "Contain"
+        },
+        {
+          "value": "fill",
+          "label": "Fill"
+        }
+      ],
+      "default": "cover",
+      "info": "Cover fills the entire screen, may crop image"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position",
+      "options": [
+        {
+          "value": "center center",
+          "label": "Center"
+        },
+        {
+          "value": "top center",
+          "label": "Top"
+        },
+        {
+          "value": "bottom center",
+          "label": "Bottom"
+        },
+        {
+          "value": "left center",
+          "label": "Left"
+        },
+        {
+          "value": "right center",
+          "label": "Right"
+        }
+      ],
+      "default": "center center"
+    },
+    {
+      "type": "header",
+      "content": "Background color"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#000000",
+      "info": "Shows when no image is uploaded or as overlay"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay opacity",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "default": 0.3,
+      "info": "Darkens or tints the background image"
+    },
+    {
+      "type": "header",
+      "content": "Gradient overlay"
+    },
+    {
+      "type": "checkbox",
+      "id": "gradient_enabled",
+      "label": "Enable gradient overlay",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_1",
+      "label": "Gradient start color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_2",
+      "label": "Gradient end color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "gradient_direction",
+      "label": "Gradient direction",
+      "min": 0,
+      "max": 360,
+      "step": 45,
+      "unit": "deg",
+      "default": 180,
+      "info": "0° = left to right, 90° = bottom to top, 180° = top to bottom"
+    },
+    {
+      "type": "range",
+      "id": "gradient_opacity",
+      "label": "Gradient opacity",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "default": 0.5
+    }
+  ],
+  "presets": [
+    {
+      "name": "Password page background"
+    }
+  ]
+}
+{% endschema %}
