@@ -9,6 +9,7 @@
  */
 {
   "current": {
+    "favicon": "shopify://shop_images/monkie_shrunk.png",
     "menu": "main-menu",
     "show_search": true,
     "announcement_bar_enabled": true,
